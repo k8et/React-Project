@@ -1,0 +1,73 @@
+{
+  "mainScreen": {
+    "title": {
+      "coin": "Монета",
+      "price": "Цена",
+      "change24h": "24ч",
+      "volume24h": "24ч объем",
+      "marketCap": "Рыночная капитализация"
+    }
+  },
+  "coinDetails": {
+    "currentPrice": "Текущая цена",
+    "marketCap": "Рыночная капитализация",
+    "volume24h": "24-часовой объем",
+    "high24h": "24-часовой максимум",
+    "low24h": "24-часовой минимум",
+    "circulatingSupply": "Обращающийся объем",
+    "totalSupply": "Общее предложение",
+    "priceHistory": "История цен (30 дней)"
+  },
+  "topCryptoScreen": {
+    "topCrypto": "Топ криптовалюты",
+    "top50": "Топ 50",
+    "top30": "Топ 30",
+    "top10": "Топ 10",
+    "title": {
+      "coin": "Монета",
+      "price": "Цена",
+      "24h": "24ч",
+      "24hVolume": "24ч объем",
+      "mktCap": "Рыночная капитализация"
+    }
+  },
+  "header": {
+    "coin": "Монета",
+    "cryptoTop": "Топ Крипто",
+    "portfolio": "Портфель"
+  },
+  "modal": {
+    "currentPrice": "Текущая цена",
+    "change24h": "Изменение за 24 часа",
+    "tradeVolume24h": "Объем торгов за 24 часа",
+    "marketCap": "Рыночная капитализация",
+    "circulatingSupply": "Циркулирующее предложение",
+    "maxSupply": "Максимальное предложение",
+    "ath": "ATH (исторический максимум)",
+    "balance": "Баланс",
+    "buySell": "Покупка и продажа монет",
+    "numberOfCoins": "Количество монет",
+    "totalCost": "Общая стоимость",
+    "buy": "Купить",
+    "sell": "Продать",
+    "close": "Закрыть"
+  },
+  "profile": {
+    "heading": "Профиль",
+    "updateEmail": "Обновить адрес электронной почты",
+    "newEmailPlaceholder": "Новый адрес электронной почты",
+    "updateEmailBtn": "Обновить адрес электронной почты",
+    "updatePassword": "Обновить пароль",
+    "newPasswordPlaceholder": "Новый пароль",
+    "updatePasswordBtn": "Обновить пароль",
+    "backToHome": "На главную",
+    "backToHomeLink": "страничку",
+    "balance": "Баланс",
+    "portfolio": "Портфель монет"
+  },
+  "logout": {
+    "logout": "Выход"
+  }
+}
+
+

@@ -1,0 +1,71 @@
+{
+  "mainScreen": {
+    "title": {
+      "coin": "Coin",
+      "price": "Price",
+      "change24h": "24h",
+      "volume24h": "24h volume",
+      "marketCap": "Mkt Cap"
+    }
+  },
+  "coinDetails": {
+    "currentPrice": "Current price",
+    "marketCap": "Market Cap",
+    "volume24h": "24h Volume",
+    "high24h": "24h High",
+    "low24h": "24h Low",
+    "circulatingSupply": "Circulating Supply",
+    "totalSupply": "Total Supply",
+    "priceHistory": "Price History (30 Days)"
+  },
+  "topCryptoScreen": {
+    "topCrypto": "Top Crypto",
+    "top50": "Top 50",
+    "top30": "Top 30",
+    "top10": "Top 10",
+    "title": {
+      "coin": "Coin",
+      "price": "Price",
+      "24h": "24h",
+      "24hVolume": "24h volume",
+      "mktCap": "Mkt Cap"
+    }
+  },
+  "header": {
+    "coin": "Coin",
+    "cryptoTop": "Crypto Top",
+    "portfolio": "Portfolio"
+  },
+  "modal": {
+    "currentPrice": "Current price",
+    "change24h": "24h change",
+    "tradeVolume24h": "24h trade volume",
+    "marketCap": "Market Cap",
+    "circulatingSupply": "Circulating Supply",
+    "maxSupply": "Max Supply",
+    "ath": "ATH (all-time high)",
+    "balance": "Balance",
+    "buySell": "Buy and Sell Coins",
+    "numberOfCoins": "Number of coins",
+    "totalCost": "Total cost",
+    "buy": "Buy",
+    "sell": "Sell",
+    "close": "Close"
+  },
+  "profile": {
+    "heading": "Profile",
+    "updateEmail": "Update Email",
+    "newEmailPlaceholder": "New Email",
+    "updateEmailBtn": "Update Email",
+    "updatePassword": "Update Password",
+    "newPasswordPlaceholder": "New Password",
+    "updatePasswordBtn": "Update Password",
+    "backToHome": "Back to",
+    "backToHomeLink": "Home",
+    "balance": "Balance",
+    "portfolio": "Coin Portfolio"
+  },
+  "logout": {
+    "logout": "Logout"
+  }
+}

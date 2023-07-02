@@ -1,0 +1,6 @@
+.SupportChat {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 100; /* Для того чтобы компонент всегда был поверх остального контента */
+}

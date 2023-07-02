@@ -1,0 +1,62 @@
+.price h1{
+    font-family: 'Roboto', sans-serif;
+}
+a {
+    text-decoration: none;
+    color: #363638;
+}
+.pricePos{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.price{
+    width: 60%;
+}
+.price button{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 16px;
+    padding-left: 20px;
+    height: 50px;
+    width: 100%;
+    background: transparent;
+    color: #0b83d7;
+    font-weight: 700;
+    border-bottom: none;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+.dropdownContent {
+    border-top: none;
+    bottom: 17px
+}
+
+.titlePos{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+    background-color: #e0e0e0;
+
+}
+.titlePos p {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 10px;
+}
+.titlePos:hover {
+    background-color: #62BB47;
+}
+
+

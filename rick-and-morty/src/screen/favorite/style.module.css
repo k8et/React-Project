@@ -1,0 +1,47 @@
+.favoriteComp{
+    display: flex;
+    justify-content: center;
+}
+.cards{
+    margin-top: 13px;
+    width: 240px;
+    height: 244px;
+    background: #FFFFFF;
+    border: 2px solid transparent;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+}
+.cards div{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.87);
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.cards p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 0px;
+    letter-spacing: 0.25px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 10px;
+}
+.cardComp{
+    display: flex;
+    width: 55%;
+    min-height: 869px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.addBtn{
+    border: none;
+    background: transparent;
+    position: absolute;
+    margin-left: 212px;
+}

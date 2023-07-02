@@ -1,0 +1,49 @@
+.ourReputation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 25em;
+}
+.reputationPos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.reputationPos h1{
+   font-size: 35px;
+}
+.boxComponent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    width: 53%;
+}
+.card{
+    padding-left: 15px;
+    padding-top: 10px;
+    width: 300px;
+    height: 190px;
+    background-color: white;
+    border: gray 2px solid ;
+    border-radius: 8px;
+}
+.card h1{
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: #3D445C;
+}
+.card p{
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #858EAD;
+}
+

@@ -1,0 +1,114 @@
+.contactScreen{
+    height: 600px;
+    display: flex;
+    background: linear-gradient(to top, #757f9a, #d7dde8);
+}
+.imgContactPos{
+    display: flex;
+    height: 100%;
+    width: 40%;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.formContactPos{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 30%;
+}
+.formContactPos form{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    height: 400px;
+    background: white;
+}
+.formContactPos h3{
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 42px;
+    line-height: 49px;
+    color: #474747;
+}
+.formContactPos span{
+    font-weight: 700;
+}
+.input{
+    width: 283px;
+    height: 39px;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 290px;
+    height: 43px;
+    background: #62BB47;
+}
+.infoContactPos{
+    margin-left: 50px;
+    flex-direction: column;
+    height: 100%;
+    width: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.infoContactPos p{
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: flex-end;
+    color: #474747;
+}
+.infoContactPos span{
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    color: #FFFFFF;
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    height: 76px;
+    background: #EBEBEB;
+}
+.footerContentPos{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    gap: 20px;
+    height: 100%;
+}
+.footerContentPos p{
+    font-family: 'Roboto',sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #6D6D6D;
+}
+.dataPiker {
+    display: flex;
+}
+.dataPiker label{
+    width: 150px;
+}
+

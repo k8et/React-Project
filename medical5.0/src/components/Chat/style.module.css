@@ -1,0 +1,44 @@
+.container {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 100;
+}
+.userMessage {
+    justify-content: flex-start;
+    height: auto;
+    width: 300px;
+    display: flex;
+    background-color: lightblue;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.adminMessage {
+    width: 300px;
+    height: auto;
+    display: flex;
+    background-color: lightgray;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.modalContent {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 400px;
+    height: 450px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 10px 10px 0 0;
+}
+.form{
+    width: 320px;
+    gap: 5px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}

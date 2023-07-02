@@ -1,0 +1,68 @@
+.container {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 2rem;
+}
+
+.fileInput {
+    margin-bottom: 1rem;
+}
+
+.fileInput label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.email-input,
+.password-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.emailInput label,
+.password-input label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.emailInput input,
+.passwordInput input {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+}
+
+.updateButton {
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+
+.updateButton:hover {
+    background-color: #3e8e41;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+.btnLog{
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.appointment{
+    display: flex;
+    gap: 20px;
+}

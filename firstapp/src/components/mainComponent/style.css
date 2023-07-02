@@ -1,0 +1,106 @@
+.mainComponent{
+    display: flex;
+    height: 54em;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.9) 16.58%, rgba(255, 255, 255, 0) 72.38%), url(/src/assets/img/mainComponenImg.png) no-repeat;;
+}
+.aSide{
+    display: flex;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.buildingThingsText{
+    width: 50%;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 72px;
+    line-height: 84px;
+}
+.bSide{
+    display: flex;
+    justify-content:flex-end;
+    align-items: flex-end;
+    width: 50%;
+    height: 100%;
+}
+.FeatureProjectsBox{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #3559C7;
+    width: 416px;
+    height: 190px;
+}
+.firstProjectBoxPosition{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.boxFirstText1{
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    color:#FFFFFF;
+}
+.boxFirstText2 {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.secondBox{
+    margin-top: 7px;
+    display: flex;
+    background: #292E3D;
+    height: 40px;
+    width: 100%;
+}
+.aSideSecondBox{
+    display: flex;
+    width: 50%;
+    border-right: #FFFFFF 2px solid;
+}
+.svgASideBox{
+    width: 25px;
+    padding-left: 70px  ;
+}
+.svgBSideBox{
+    width: 25px;
+    margin-right: 60px;
+}
+
+.sideABoxText{
+    border: none;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+}
+.sideBBoxText{
+    margin-left: 70px;
+    border: none;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+}
+.bSideSecondBox{
+    display: flex;
+    width: 50%;
+}

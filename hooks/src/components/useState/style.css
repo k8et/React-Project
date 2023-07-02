@@ -1,0 +1,10 @@
+.main{
+    display: flex;
+}
+.count{
+    border: darkgrey 2px solid;
+    width: 150px;
+}
+.text{
+    border: darkgrey 2px solid;
+}

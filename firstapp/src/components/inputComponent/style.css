@@ -1,0 +1,148 @@
+.inputComponent{
+    display: flex;
+    flex-direction: column;
+    background: #F6F8F7;
+    width: 100%;
+    height: 632px;
+}
+.inputTitle{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 102px;
+}
+.inputText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 68px;
+}
+.inputTitle h1{
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+    color: #292E3D;
+}
+.inputText p{
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    color: #292E3D;
+}
+.inputNameMail{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 64px;
+}
+.inputReasonPhone{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 78px;
+}
+#name{
+    background: #FFFFFF;
+    border: 1px solid #E0E3EB;
+    border-radius: 4px;
+    padding-left: 8px;
+    margin-right: 16px;
+    height: 41px;
+    width: 206px;
+}
+#email{
+    background: #FFFFFF;
+    border: 1px solid #E0E3EB;
+    padding-left: 8px;
+    border-radius: 4px;
+    margin-left: 16px;
+    height: 41px;
+    width: 206px;
+}
+.place{
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+}
+#reason{
+    background: #FFFFFF;
+    border: 1px solid #E0E3EB;
+    border-radius: 4px;
+    padding-left: 8px;
+    margin-right: 16px;
+    height: 41px;
+    width: 206px;
+}
+#phone{
+    background: #FFFFFF;
+    border: 1px solid #E0E3EB;
+    padding-left: 8px;
+    border-radius: 4px;
+    margin-left: 16px;
+    height: 41px;
+    width: 206px;
+}
+.inputMassage{
+    display: flex;
+    justify-content: center;
+    margin-top: -25px;
+    width: 100%;
+    height: 167px;
+}
+textarea{
+    resize: none;
+    padding-top: 10px;
+    padding-left: 8px;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    width: 465px;
+    height: 135px;
+}
+.indicates{
+    display: flex;
+    justify-content: center;
+    height: 23px;
+    width: 84%;
+}
+.indicatesText{
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #667299;
+    height: 15px;
+    margin-top: -1px;
+}
+.submit{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+}
+.buttonSubmit{
+    background: #2947A9;
+    border-radius: 2px;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    height: 40px;
+    width: 200px;
+    color: #FFFFFF;
+}

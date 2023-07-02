@@ -1,0 +1,130 @@
+.Line{
+    text-decoration: none;
+}
+.detailsBox{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.detailsBox h3{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 56px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    color: #081F32;
+}
+.img{
+    border: 5px solid #F2F2F7;
+    border-radius: 150px;
+    width: 300px;
+    height: 300px;
+}
+.information{
+    display: flex;
+    flex-direction: column;
+    width: 431px;
+}
+.infText,.episText{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    color: #8E8E93;
+}
+.episodes{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    width: 431px;
+}
+.informationEpisodesPos{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.status p{
+    margin-left: 10px;
+    border-bottom: 1px solid #dedbdb;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.25px;
+    color: #6E798C;
+}
+.status h3{
+    padding-left: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    ltter-spacing: 0.15px;
+    color: #081F32;
+}
+.btnBack {
+    display: flex;
+    align-items: center;
+    width: 120px;
+    height: 21px;
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    background-color: transparent;
+    border: none;
+}
+.btnPos{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 300px;
+    height: 80px;
+}
+.episodesText{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.episodeSXEXX{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    letter-spacing: 0.15px;
+    color: #081F32;
+}
+.episodeName{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+/* identical to box height, or 143% */
+
+    letter-spacing: 0.25px;
+
+    color: #6E798C;
+}
+.episodeDate {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8E8E93;
+    border-bottom: 1px solid #dedbdb;
+}

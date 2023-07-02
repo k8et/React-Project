@@ -1,0 +1,72 @@
+.locationsComp{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.locationsComp img{
+    width: 326px;
+    height: 202px;
+}
+.planetBox{
+    display: flex;
+    width: 55%;
+    min-height: 540px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 240px;
+    height: 128px;
+    background: #FAFAFA;
+    margin-top: 15px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+    border-radius: 4px;
+}
+.cardName{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.87);
+}
+.cardType{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: rgba(0, 0, 0, 0.6);
+}
+.btnPos{
+    width: 100%;
+    height: 89px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+}
+.inputBox{
+    margin-top: 10px;
+    width: 55%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.linkLocationDetails{
+    text-decoration: none;
+}
+.load{
+    margin-left: 495px;
+    margin-top: 110px;
+}

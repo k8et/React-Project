@@ -1,0 +1,46 @@
+.main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.main p{
+    margin-right: 85px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 30px;
+    color: #807d7d;
+}
+.main h1{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 47px;
+    display: flex;
+    align-items: center;
+    color: #212020;
+}
+.main h3{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: #FFFFFF;
+}
+
+.labPos{
+    width: 60%;
+}
+
+.labPos li{
+    margin-right: 85px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 30px;
+    color: #5b5959;
+}

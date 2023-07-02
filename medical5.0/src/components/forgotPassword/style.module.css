@@ -1,0 +1,15 @@
+.main{
+    font-family: Roboto,sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.linkPos div{
+    display: flex;
+    justify-content: space-between;
+}
+.linkPos a{
+    color: #1d5d90;
+    text-decoration: none;
+}

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0397befd-54e7-4e9d-9f8e-56dcec26a091" name="Changes" comment="bit4.0">
+      <change afterPath="$PROJECT_DIR$/../bank/public/locales/en.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bank/public/locales/ru.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bank/src/assets/img/mastercard-logo-mastercard-logo-png-vector-download-19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bank/src/i18n/i18n.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bank/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../bank/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bank/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../bank/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bank/src/assets/img/png-transparent-mastercard-credit-card-visa-payment-service-mastercard-company-orange-logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bank/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../bank/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bank/src/screens/cards/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../bank/src/screens/cards/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bank/src/screens/cards/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../bank/src/screens/cards/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bank/src/screens/homePage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../bank/src/screens/homePage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bank/src/screens/homePage/style.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../bank/src/screens/homePage/style.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bank/src/stores/fetchNews.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../bank/src/stores/fetchNews.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="c85455e0-9ebf-4919-aff0-b629803697c1" />
+        <option name="url" value="https://github.com/k8et/MyProject.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NmRhENvJrcfkv6IdnABRhBzUHN" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/maxim/Рабочий стол/ReactProject/bit&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\mxmgn\\WebStorm 2022.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mxmgn\Desktop\Web-dev\ReactProject\bit\public" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0397befd-54e7-4e9d-9f8e-56dcec26a091" name="Changes" comment="" />
+      <created>1680267387254</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680267387254</updated>
+      <workItem from="1680267389065" duration="14000" />
+      <workItem from="1680357276393" duration="644000" />
+      <workItem from="1681487368294" duration="4077000" />
+      <workItem from="1681506370287" duration="45000" />
+      <workItem from="1681516378024" duration="13373000" />
+      <workItem from="1681587552927" duration="1822000" />
+      <workItem from="1681907816170" duration="3325000" />
+      <workItem from="1681921128644" duration="433000" />
+      <workItem from="1681950696226" duration="8694000" />
+      <workItem from="1682012483201" duration="204000" />
+      <workItem from="1682074413391" duration="1096000" />
+      <workItem from="1682095600460" duration="8857000" />
+      <workItem from="1685780423141" duration="199000" />
+    </task>
+    <task id="LOCAL-00001" summary="bit2.0">
+      <created>1681588875704</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681588875704</updated>
+    </task>
+    <task id="LOCAL-00002" summary="bit3.0">
+      <created>1681589087082</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681589087083</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="bit2.0" />
+    <MESSAGE value="bit3.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="bit3.0" />
+  </component>
+</project>
