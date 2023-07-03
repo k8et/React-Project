@@ -30,7 +30,6 @@ const ChatBot: React.FC = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [selectedOption, setSelectedOption] = useState<string>('');
     const [userInput, setUserInput] = useState<string>('');
-    console.log('arr', messages)
 
     const handleClickOpen = () => {
         setOpen(true);

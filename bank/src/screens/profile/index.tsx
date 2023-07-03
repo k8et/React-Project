@@ -51,36 +51,28 @@ const Profile: React.FC<ComponentProps> = (props) => {
     lastName: "",
     phone: "",
   });
-
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const userDate = useCurrentUserDate();
   const user = auth.currentUser?.uid;
-
   const img = userDate[0]?.data?.imageUrl;
   const handleModalOpen = () => {
     setModalOpen(true);
   };
-
   const handleModalClose = () => {
     setModalOpen(false);
   };
-
   const handleChangeEmailModalOpen = () => {
     setChangeEmailModalOpen(true);
   };
-
   const handleChangeEmailModalClose = () => {
     setChangeEmailModalOpen(false);
   };
-
   const handleChangePasswordModalOpen = () => {
     setChangePasswordModalOpen(true);
   };
-
   const handleChangePasswordModalClose = () => {
     setChangePasswordModalOpen(false);
   };
-
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setTab(newValue);
   };

@@ -67,14 +67,14 @@ const Navigation: FC = () => {
             <Route path="/cards" element={<Cards theme={theme} t={t} />} />
             <Route path="/" element={<RegisterScreen />} />
             <Route path="/signIn" element={<SignIn />} />
-            <Route path="/top-up" element={<TopUp theme={theme} t={t} />} />
+            <Route path="/top-up" element={<TopUp currency={currency} theme={theme} t={t} />} />
             <Route
               path="/transfer/:card"
-              element={<Transfer theme={theme} t={t} />}
+              element={<Transfer currency={currency} theme={theme} t={t} />}
             />
             <Route
               path="/transfer"
-              element={<Transfer theme={theme} t={t} />}
+              element={<Transfer currency={currency} theme={theme} t={t} />}
             />
             <Route
               path="/top-up-phone"

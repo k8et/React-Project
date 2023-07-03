@@ -17,16 +17,22 @@ import P2P from "../../../src/assets/svg/ServiceP2P.svg";
 import iconVisa from "../../assets/img/icon-visa-196578.png";
 import iconMc from "../../assets/svg/mc_symbol.svg";
 import {
+    Box,
     TextField,
 } from "@mui/material";
 import CardSelect from "../../components/cardSelect";
 import ButtonPayment from "../../components/buttonPayment";
 import {useParams} from "react-router-dom";
 import {ComponentProps} from "../../types/ComponentProps";
-import currencyStore from "../../stores/fetchCurrency";
+import {Currency} from "../../types/CurrencyProp";
+import {getThemeClass} from "../../utils/DarkLightStyle";
 
-const Transfer: FC<ComponentProps> = observer((props) => {
-    const {t, theme} = props
+interface TransferProps extends ComponentProps {
+    currency: Currency
+}
+
+const Transfer: FC<TransferProps> = observer((props) => {
+    const {t, theme, currency} = props
     const [amount, setAmount] = useState<string>("");
     const userId = useCurrentUserId();
     const userCards = useUserCards(userId);
@@ -69,13 +75,13 @@ const Transfer: FC<ComponentProps> = observer((props) => {
         let updatedDestinationBalance = destinationCardData.balance;
 
         if (sourceCard.data.currency === 'USD' && destinationCardData.currency === 'UAH') {
-            amountToTransfer *= (currencyStore.rate as any).UAH;
+            amountToTransfer *= currency.UAH;
             updatedDestinationBalance += amountToTransfer;
-            sourceCard.data.balance -= amountToTransfer / (currencyStore.rate as any).UAH;
+            sourceCard.data.balance -= amountToTransfer / currency.UAH;
         } else if (sourceCard.data.currency === 'UAH' && destinationCardData.currency === 'USD') {
-            amountToTransfer /= (currencyStore.rate as any).UAH;
+            amountToTransfer /= currency.UAH;
             updatedDestinationBalance += amountToTransfer;
-            sourceCard.data.balance -= amountToTransfer * (currencyStore.rate as any).UAH;
+            sourceCard.data.balance -= amountToTransfer * currency.UAH;
         }
 
         await updateDoc(doc(db, "cards", sourceCard.id), {
@@ -105,24 +111,23 @@ const Transfer: FC<ComponentProps> = observer((props) => {
         setMessage("");
     };
 
-
-
+    const wrapperTheme = `${styles.wrapper} ${theme === 'dark' ? styles.wrapperDarkTheme : styles.wrapperLightTheme}`
 
     return (
-        <div className={`${styles.main} ${theme === 'dark' ? styles.darkTheme : styles.lightTheme}`}>
-            <div className={styles.trans}>
+        <Box className={getThemeClass(theme, styles)}>
+            <Box className={styles.trans}>
                 <img src={P2P} alt=""/>
-                <div className={styles.title}>
+                <Box className={styles.title}>
                     <h1>{t("transfer.title")}</h1>
                     <p>{t("transfer.description")}</p>
-                </div>
-                <div className={styles.icon}>
+                </Box>
+                <Box className={styles.icon}>
                     <img src={iconVisa} alt=""/>
                     <img src={iconMc} alt=""/>
-                </div>
-            </div>
-            <div
-                className={`${styles.wrapper} ${theme === 'dark' ? styles.wrapperDarkTheme : styles.wrapperLightTheme}`}>
+                </Box>
+            </Box>
+            <Box
+                className={wrapperTheme}>
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <CardSelect
                         selectedCard={selectedCard}
@@ -151,8 +156,8 @@ const Transfer: FC<ComponentProps> = observer((props) => {
                     </ButtonPayment>
                     <p>{message}</p>
                 </form>
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 });
 
