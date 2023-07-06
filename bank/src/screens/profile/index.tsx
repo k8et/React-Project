@@ -18,7 +18,7 @@ import {
   uploadPassportData,
 } from "./components/autFunction";
 import { UserData } from "../../types/UserData";
-import userDateStore from "../../stores/usersDate";
+import userDateStore from "../../stores/getDataFirebase";
 
 interface PassportData {
   name: string;
@@ -52,7 +52,7 @@ const Profile: React.FC<ComponentProps> = (props) => {
     phone: "",
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const userDate = userDateStore.userDate;
+  const userDate = userDateStore.date;
   const user = auth.currentUser?.uid;
   const img = userDate[0]?.data?.imageUrl;
   const handleModalOpen = () => {
@@ -83,7 +83,7 @@ const Profile: React.FC<ComponentProps> = (props) => {
 
   useEffect(() => {
     handleUserData(setUserData);
-    userDateStore.useCurrentUserDate('users')
+    userDateStore.getData('users')
   }, []);
 
   useEffect(() => {

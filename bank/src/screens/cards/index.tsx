@@ -17,10 +17,10 @@ import "slick-carousel/slick/slick-theme.css";
 import { useUserCards } from "../../utils/hooks/useUserCards";
 import MessageModal from "../../components/messageModal";
 import ActionCard from "./components/actionCard";
-import { CardInfo } from "../../types/CardInfoProp";
 import { ComponentProps } from "../../types/ComponentProps";
 import CardDetails from "./components/cardDetails";
 import MyCard from "./components/myCard";
+import {CardInfo} from "../../types/CardInfoType";
 
 const Cards: FC<ComponentProps> = (props) => {
   const { theme, t } = props;

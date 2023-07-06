@@ -5,10 +5,12 @@ class DataStore {
     isLoading = false;
 
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable(this,{
+            fetchData: action
+        });
     }
 
-    fetchData = action(async (url: string) => {
+    fetchData = (async (url: string) => {
         try {
             this.isLoading = true;
             const response = await fetch(url);

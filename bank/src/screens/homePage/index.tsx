@@ -13,6 +13,7 @@ import {getThemeClass} from "../../utils/DarkLightStyle";
 
 interface HomePageProp extends ComponentProps {
     currency: Currency
+
 }
 
 const HomePage: FC<HomePageProp> = observer((props) => {

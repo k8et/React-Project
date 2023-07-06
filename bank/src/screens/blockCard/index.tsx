@@ -6,18 +6,18 @@ import { Box, Button, Typography } from "@mui/material";
 import styles from "./style.module.css";
 import CardSelect from "../../components/cardSelect";
 import cardBlock from "../../assets/svg/CardBlock.svg";
-import { useCurrentUserId } from "../../utils/hooks/useCurrentUserId";
-import { useUserCards } from "../../utils/hooks/useUserCards";
 import { ComponentProps } from "../../types/ComponentProps";
+import {CardData} from "../../types/CardDataType";
 
-const BlockCard: React.FC<ComponentProps> = observer((props) => {
-  const { t, theme } = props;
+interface BlockCardProps extends ComponentProps{
+  userCards: CardData[]
+}
+const BlockCard: React.FC<BlockCardProps> = observer((props) => {
+  const { t, theme, userCards } = props;
   const [selectedCardId, setSelectedCardId] = useState("");
   const [isBlocked, setIsBlocked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<any>("");
-  const userId = useCurrentUserId();
-  const userCards = useUserCards(userId);
 
   const handleBlockCard = async () => {
     setLoading(true);
