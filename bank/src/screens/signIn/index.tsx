@@ -9,50 +9,35 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import { login } from "../../config/firebase";
-import {Link} from "react-router-dom";
-import {AuthListener} from "../../utils/AuthListener";
+import {Link, useNavigate} from "react-router-dom";
+import {sxButton, sxBox, theme} from "./style";
 
 
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#3f51b5",
-    },
-    secondary: {
-      main: "#f50057",
-    },
-  },
-});
+
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  AuthListener()
+  const navigate = useNavigate()
   const loginHandler = async (email: string, password: string) => {
     try {
       await login(email, password);
+      navigate('/home')
     } catch (error) {
-      console.log("Error log", error);
+      console.log(error);
     }
   };
 
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container  maxWidth="xs">
         <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
+        <Box sx={sxBox}>
           <Avatar>
             <LockOutlinedIcon />
           </Avatar>
@@ -95,9 +80,9 @@ const SignIn = () => {
               color="primary"
               onClick={(e) => {
                 e.preventDefault()
-                loginHandler(email, password);
+                loginHandler(email, password).then(r => r);
               }}
-              sx={{ mt: 0, mb: 2 }}
+              sx={sxButton}
             >
               Sign In
             </Button>

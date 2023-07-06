@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import styles from "./style.module.css";
-import { useCurrentUserDate } from "../../utils/hooks/useCurrentUserDocId";
 import { ComponentProps } from "../../types/ComponentProps";
 import BoxUserInformation from "./components/boxUserInformation";
 import UploadDocuments from "./components/uploadDocuments";
@@ -19,6 +18,7 @@ import {
   uploadPassportData,
 } from "./components/autFunction";
 import { UserData } from "../../types/UserData";
+import userDateStore from "../../stores/usersDate";
 
 interface PassportData {
   name: string;
@@ -52,7 +52,7 @@ const Profile: React.FC<ComponentProps> = (props) => {
     phone: "",
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const userDate = useCurrentUserDate();
+  const userDate = userDateStore.userDate;
   const user = auth.currentUser?.uid;
   const img = userDate[0]?.data?.imageUrl;
   const handleModalOpen = () => {
@@ -83,6 +83,7 @@ const Profile: React.FC<ComponentProps> = (props) => {
 
   useEffect(() => {
     handleUserData(setUserData);
+    userDateStore.useCurrentUserDate('users')
   }, []);
 
   useEffect(() => {

@@ -26,6 +26,7 @@ export const logout = () => signOut(auth)
 export const db = getFirestore()
 export const auth = getAuth()
 export const storage = getStorage();
+export const uid = auth.currentUser ? auth.currentUser.uid : null;
 export const sendResetEmail = async (email: string) => {
     return sendPasswordResetEmail(auth, email);
 }

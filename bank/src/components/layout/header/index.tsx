@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, {FC, useContext, useEffect} from "react";
 import styles from "./style.module.css";
 import { ThemeContext } from "../../themeProvider";
 import { Currency } from "../../../types/CurrencyProp";
@@ -16,6 +16,7 @@ const Header: FC<HeaderProps> = (props) => {
   const { theme } = themeContext;
 
   const exchangeRate = currency.UAH;
+
 
   return (
     <div

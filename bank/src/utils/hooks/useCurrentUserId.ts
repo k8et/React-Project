@@ -6,17 +6,9 @@ import {auth} from "../../config/firebase";
     const [userId, setUserId] = useState<any>('');
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (user) {
-                setUserId(user.uid);
-            } else {
-                setUserId(undefined);
-            }
+         auth.onAuthStateChanged((user) => {
+            setUserId(user ? user.uid : undefined);
         });
-
-        return () => {
-            unsubscribe();
-        };
     }, []);
 
     return userId;

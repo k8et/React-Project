@@ -32,9 +32,6 @@ const Cards: FC<ComponentProps> = (props) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const userId = useCurrentUserId();
   const userCards = useUserCards(userId);
-  console.log("User names:", userName);
-  console.log("my card", userCards);
-  console.log("id", userId);
 
   useEffect(() => {
     const usersCollection = collection(db, "users");

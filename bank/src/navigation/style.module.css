@@ -1,0 +1,10 @@
+.main{
+    display: flex;
+    background-color: white;
+    flex-direction: row;
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}

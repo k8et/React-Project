@@ -26,13 +26,11 @@ const HomePage: FC<HomePageProp> = observer((props) => {
     const [iBan, setIBan] = useState<string>("");
     const [news, setNews] = useState<NewsItem[]>([]);
     const currencies = ["USD", "EUR", "UAH", "GBP"];
-
     useEffect(() => {
         dataStore.fetchData(API_URL_NEWS).then(() => {
             setNews(dataStore.data.articles);
         });
     }, []);
-
     const handleConversion = () => {
         if (typeof amount === "number") {
             const rateFrom = currency[currencyFrom];

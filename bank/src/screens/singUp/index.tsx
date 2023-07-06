@@ -9,11 +9,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import {ThemeProvider } from "@mui/material/styles";
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { db, register } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import {formBoxStyles, theme} from "./style";
-import {AuthListener} from "../../utils/AuthListener";
 
 
 const RegisterScreen: FC = () => {
@@ -22,32 +21,30 @@ const RegisterScreen: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  AuthListener()
-
-  const registerHandler = async (
-      email: string,
-      password: string,
-      name: string,
-      lastName: string,
-      phone: string
-  ) => {
-    try {
-      const { user } = await register(email, password);
-      await addDoc(collection(db, "users"), {
-        userId: user.uid,
-        name,
-        lastName,
-        phone,
-      });
-    } catch (error) {
-      console.log("Error reg", error);
-    } finally {
-      console.log("fine");
-    }
-  };
+  const navigate = useNavigate()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    registerHandler(email, password, name, lastName, phone);
+    const registerHandler = async (
+        email: string,
+        password: string,
+        name: string,
+        lastName: string,
+        phone: string
+    ) => {
+      try {
+        const { user } = await register(email, password);
+        await addDoc(collection(db, "users"), {
+          userId: user.uid,
+          name,
+          lastName,
+          phone,
+        });
+        navigate('/home')
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    registerHandler(email, password, name, lastName, phone).then(r => r);
   };
   return (
     <ThemeProvider theme={theme}>
