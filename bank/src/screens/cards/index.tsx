@@ -11,28 +11,27 @@ import {
 import { db } from "../../config/firebase";
 import Modal from "../../components/modalCard";
 import styles from "./style.module.css";
-import { useCurrentUserId } from "../../utils/hooks/useCurrentUserId";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useUserCards } from "../../utils/hooks/useUserCards";
 import MessageModal from "../../components/messageModal";
 import ActionCard from "./components/actionCard";
 import { ComponentProps } from "../../types/ComponentProps";
 import CardDetails from "./components/cardDetails";
 import MyCard from "./components/myCard";
 import {CardInfo} from "../../types/CardInfoType";
-
-const Cards: FC<ComponentProps> = (props) => {
-  const { theme, t } = props;
+import {CardData} from "../../types/CardDataType";
+interface CardsProps extends ComponentProps{
+  userCards: CardData[]
+  userId: string | undefined
+}
+const Cards: FC<CardsProps> = (props) => {
+  const { theme, t, userCards, userId } = props;
   const [showModal, setShowModal] = useState<boolean>(false);
   const [message, setMessage] = useState<any>([]);
   const [showMessageModal, setShowMessageModal] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>("");
   const [lastUserName, setLastUserName] = useState<string>("");
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const userId = useCurrentUserId();
-  const userCards = useUserCards(userId);
-
   useEffect(() => {
     const usersCollection = collection(db, "users");
     const q = query(usersCollection, where("userId", "==", userId));

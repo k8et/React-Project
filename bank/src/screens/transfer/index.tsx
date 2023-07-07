@@ -10,8 +10,6 @@ import {
 } from "firebase/firestore";
 import {db} from "../../config/firebase";
 import {observer} from "mobx-react";
-import {useCurrentUserId} from "../../utils/hooks/useCurrentUserId";
-import {useUserCards} from "../../utils/hooks/useUserCards";
 import styles from "./style.module.css";
 import P2P from "../../../src/assets/svg/ServiceP2P.svg";
 import iconVisa from "../../assets/img/icon-visa-196578.png";
@@ -26,16 +24,17 @@ import {useParams} from "react-router-dom";
 import {ComponentProps} from "../../types/ComponentProps";
 import {Currency} from "../../types/CurrencyProp";
 import {getThemeClass} from "../../utils/DarkLightStyle";
+import {CardData} from "../../types/CardDataType";
 
 interface TransferProps extends ComponentProps {
     currency: Currency
+    userId: string | undefined
+    userCards: CardData[]
 }
 
 const Transfer: FC<TransferProps> = observer((props) => {
-    const {t, theme, currency} = props
+    const {t, theme, currency, userId, userCards} = props
     const [amount, setAmount] = useState<string>("");
-    const userId = useCurrentUserId();
-    const userCards = useUserCards(userId);
     const [message, setMessage] = useState<string | any>('')
     const {card} = useParams<{ card: string }>();
     const [destinationCardNumber, setDestinationCardNumber] = useState<string>(card || "");
@@ -44,7 +43,7 @@ const Transfer: FC<TransferProps> = observer((props) => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const sourceCard = userCards.find((card: any) => card.id === selectedCard);
+        const sourceCard: any = userCards.find((card: any) => card.id === selectedCard);
         if (sourceCard?.data.isBlocked) {
             setMessage(t("requisites.cardIsBlocked"));
             return;

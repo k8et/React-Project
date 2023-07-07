@@ -23,14 +23,16 @@ import styles from "./style.module.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase";
 import getDataStore from "../stores/getDataFirebase";
+import { observer } from "mobx-react";
 
-const Navigation: FC = () => {
+const Navigation: FC = observer(() => {
   const location = useLocation();
   const navigate = useNavigate();
   const isLoginPage = location.pathname === "/";
   const isRegisterPage = location.pathname === "/signIn";
   const isPasswordReset = location.pathname === "/password-reset";
   const isChatBotPage = !(isLoginPage || isRegisterPage || isPasswordReset);
+  const [userId, setUserId] = useState<string | undefined>("");
   const [currency, setCurrency] = useState<Currency>({});
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -49,6 +51,9 @@ const Navigation: FC = () => {
       }
     });
     getDataStore.getData("cards");
+    auth.onAuthStateChanged((user) => {
+      setUserId(user ? user.uid : undefined);
+    });
   }, []);
 
   if (!themeContext) {
@@ -64,28 +69,76 @@ const Navigation: FC = () => {
             <Header currency={currency} />
           )}
           <Routes>
-            <Route path="/cards" element={<Cards theme={theme} t={t} />} />
+            <Route
+              path="/cards"
+              element={
+                <Cards
+                  userCards={userCards}
+                  userId={userId}
+                  theme={theme}
+                  t={t}
+                />
+              }
+            />
             <Route path="/" element={<RegisterScreen />} />
             <Route path="/signIn" element={<SignIn />} />
             <Route
               path="/top-up"
-              element={<TopUp currency={currency} theme={theme} t={t} />}
+              element={
+                <TopUp
+                  userId={userId}
+                  userCards={userCards}
+                  currency={currency}
+                  theme={theme}
+                  t={t}
+                />
+              }
             />
             <Route
               path="/transfer/:card"
-              element={<Transfer currency={currency} theme={theme} t={t} />}
+              element={
+                <Transfer
+                  userId={userId}
+                  userCards={userCards}
+                  currency={currency}
+                  theme={theme}
+                  t={t}
+                />
+              }
             />
             <Route
               path="/transfer"
-              element={<Transfer currency={currency} theme={theme} t={t} />}
+              element={
+                <Transfer
+                  userId={userId}
+                  userCards={userCards}
+                  currency={currency}
+                  theme={theme}
+                  t={t}
+                />
+              }
             />
             <Route
               path="/top-up-phone"
-              element={<TopUpPhone theme={theme} t={t} />}
+              element={
+                <TopUpPhone
+                  userId={userId}
+                  userCards={userCards}
+                  theme={theme}
+                  t={t}
+                />
+              }
             />
             <Route
               path="/top-up-phone/:phone"
-              element={<TopUpPhone theme={theme} t={t} />}
+              element={
+                <TopUpPhone
+                  userId={userId}
+                  userCards={userCards}
+                  theme={theme}
+                  t={t}
+                />
+              }
             />
             <Route
               path="/block-card"
@@ -93,15 +146,31 @@ const Navigation: FC = () => {
             />
             <Route
               path="/transaction-history"
-              element={<TransactionHistory theme={theme} t={t} />}
+              element={
+                <TransactionHistory userId={userId} theme={theme} t={t} />
+              }
             />
             <Route
               path="/requisites"
-              element={<Requisites theme={theme} t={t} />}
+              element={
+                <Requisites
+                  userId={userId}
+                  userCards={userCards}
+                  theme={theme}
+                  t={t}
+                />
+              }
             />
             <Route
               path="/requisites/:iBan"
-              element={<Requisites theme={theme} t={t} />}
+              element={
+                <Requisites
+                  userId={userId}
+                  userCards={userCards}
+                  theme={theme}
+                  t={t}
+                />
+              }
             />
             <Route
               path="/home"
@@ -115,6 +184,6 @@ const Navigation: FC = () => {
       {isChatBotPage && <ChatBot />}
     </div>
   );
-};
+});
 
 export default Navigation;

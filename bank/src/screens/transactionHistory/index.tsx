@@ -8,17 +8,18 @@ import {
 } from "@mui/material";
 import styles from "./style.module.css";
 import Typography from "@mui/material/Typography";
-import {useCurrentUserId} from "../../utils/hooks/useCurrentUserId";
 import {ComponentProps} from "../../types/ComponentProps";
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
 import {Transaction} from "../../types/Transaction";
 import CustomTableContainer from "./Components/tableContainer";
 
-const TransactionHistory: React.FC<ComponentProps> = observer((props) => {
-    const {t, theme} = props;
+interface TransactionHistoryProps extends ComponentProps{
+    userId: string | undefined
+}
+const TransactionHistory: React.FC<TransactionHistoryProps> = observer((props) => {
+    const {t, theme, userId} = props;
     const [transactions, setTransactions] = useState<Transaction[]>([]);
-    const userId = useCurrentUserId();
 
     const exportToCSV = (
         csvData: any[],

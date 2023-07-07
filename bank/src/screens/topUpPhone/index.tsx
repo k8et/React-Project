@@ -7,23 +7,24 @@ import serviceMob from "../../assets/svg/ServiceMobile.svg"
 import { Box, TextField } from '@mui/material';
 import CardSelect from "../../components/cardSelect";
 import ButtonPayment from "../../components/buttonPayment";
-import { useCurrentUserId } from "../../utils/hooks/useCurrentUserId";
-import { useUserCards } from "../../utils/hooks/useUserCards";
 import { useParams } from "react-router-dom";
 import {ComponentProps} from "../../types/ComponentProps";
+import {CardData} from "../../types/CardDataType";
 
-const TopUpPhonePage: React.FC<ComponentProps> = observer((props) => {
-  const {t,theme} = props
+interface TopUpPhonePage extends ComponentProps{
+  userId: string | undefined
+  userCards: CardData[]
+}
+const TopUpPhonePage: React.FC<TopUpPhonePage> = observer((props) => {
+  const {t,theme, userId,userCards} = props
   const [selectedCardId, setSelectedCardId] = useState("");
   const [amount, setAmount] = useState<string>('');
-  const userId = useCurrentUserId()
-  const userCards = useUserCards(userId)
   const [message, setMessage] = useState<string | any>('')
   const { phone } = useParams<{ phone: string }>();
   const [phoneNumber, setPhoneNumber] = useState(phone || "");
   const handleTopUp = async (e: FormEvent) => {
     e.preventDefault();
-    const selectedCard = userCards.find((card) => card.id === selectedCardId);
+    const selectedCard: any = userCards.find((card) => card.id === selectedCardId);
     if (selectedCard?.data.isBlocked){
       setMessage(t("requisites.cardIsBlocked"))
       return;

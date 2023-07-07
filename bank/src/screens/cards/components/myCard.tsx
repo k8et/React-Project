@@ -3,10 +3,11 @@ import styles from "../style.module.css";
 import Slider from "react-slick";
 import mCard from "../../../assets/img/mastercard-logo-mastercard-logo-png-vector-download-19.png";
 import vCard from "../../../assets/img/icon-visa-196578.png";
+import {CardData} from "../../../types/CardDataType";
 
 interface MyCardProps {
     settings: any,
-    userCards: any[],
+    userCards: CardData[],
     splitCardNum: (item: any) => string,
     handleButtonClick: () => void,
     t: (key: string) => string,

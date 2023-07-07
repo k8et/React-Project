@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import styles from "./style.module.css";
 import {CardData} from "../../types/CardDataType";
+import {observer} from "mobx-react";
 
 
 interface CardSelectProps {

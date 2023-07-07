@@ -1,8 +1,9 @@
 import React, {FC} from "react";
 import styles from "../style.module.css";
+import {CardData} from "../../../types/CardDataType";
 interface CardDetailsProp{
   t: (key: string) => string,
-  userCards: { data: { accountNumber: string, cardNumber: string, currency: string, expirationDate: string, cardType: string } }[],
+  userCards: CardData[],
   currentSlide: number,
   userName:string,
   lastUserName:string,

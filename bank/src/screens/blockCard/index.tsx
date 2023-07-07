@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { observer } from "mobx-react";
 import { Box, Button, Typography } from "@mui/material";
 import styles from "./style.module.css";
 import CardSelect from "../../components/cardSelect";
@@ -12,13 +11,12 @@ import {CardData} from "../../types/CardDataType";
 interface BlockCardProps extends ComponentProps{
   userCards: CardData[]
 }
-const BlockCard: React.FC<BlockCardProps> = observer((props) => {
-  const { t, theme, userCards } = props;
-  const [selectedCardId, setSelectedCardId] = useState("");
+const BlockCard: React.FC<BlockCardProps> = (props) => {
+  const { t, theme, userCards} = props;
+  const [selectedCardId, setSelectedCardId] = useState<string>("");
   const [isBlocked, setIsBlocked] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<any>("");
-
+  const [message, setMessage] = useState<string | null>(null);
   const handleBlockCard = async () => {
     setLoading(true);
     try {
@@ -86,6 +84,6 @@ const BlockCard: React.FC<BlockCardProps> = observer((props) => {
       </Box>
     </Box>
   );
-});
+};
 
 export default BlockCard;

@@ -2,8 +2,6 @@ import React, { FC, useState } from "react";
 import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import styles from "./style.module.css";
-import { useCurrentUserId } from "../../utils/hooks/useCurrentUserId";
-import { useUserCards } from "../../utils/hooks/useUserCards";
 import {
   Box,
   TextField,
@@ -13,21 +11,24 @@ import ServicePayment from "../../assets/svg/ServicePayments.svg";
 import ButtonPayment from "../../components/buttonPayment";
 import { useParams } from "react-router-dom";
 import {ComponentProps} from "../../types/ComponentProps";
+import {CardData} from "../../types/CardDataType";
 
-const Requisites: FC<ComponentProps> = (props) => {
-  const {t,theme} = props
+interface RequisitesProps extends ComponentProps{
+  userId: string | undefined
+  userCards: CardData[]
+}
+const Requisites: FC<RequisitesProps> = (props) => {
+  const {t,theme, userId, userCards} = props
   const [selectedCard, setSelectedCard] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const { iBan } = useParams<{ iBan: string }>()
   const [message, setMessage] = useState<string | any>('')
   const [iban, setIban] = useState<string>(iBan || "");
-  const userId = useCurrentUserId();
-  const userCards = useUserCards(userId);
 
   const handlePaymentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const sourceCard = userCards.find((card: any) => card.id === selectedCard);
+    const sourceCard: any = userCards.find((card: any) => card.id === selectedCard);
     if (sourceCard?.data.isBlocked){
       setMessage(t("requisites.cardIsBlocked"))
       return;
