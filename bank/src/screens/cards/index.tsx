@@ -27,7 +27,7 @@ interface CardsProps extends ComponentProps{
 const Cards: FC<CardsProps> = (props) => {
   const { theme, t, userCards, userId } = props;
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [message, setMessage] = useState<any>([]);
+  const [message, setMessage] = useState<string | null>(null);
   const [showMessageModal, setShowMessageModal] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>("");
   const [lastUserName, setLastUserName] = useState<string>("");
@@ -134,7 +134,9 @@ const Cards: FC<CardsProps> = (props) => {
     beforeChange: (current: number, next: number) => setCurrentSlide(next),
   };
   const splitCardNum = (item: any) => {
-    return item.data.cardNumber.match(/.{1,4}/g).join(" ");
+    if (item && item.data && item.data.cardNumber) {
+      return item.data.cardNumber.match(/.{1,4}/g).join(" ");
+    }
   };
   return (
     <div

@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import mCard from "../../../assets/img/mastercard-logo-mastercard-logo-png-vector-download-19.png";
 import vCard from "../../../assets/img/icon-visa-196578.png";
 import {CardData} from "../../../types/CardDataType";
+import {Box} from "@mui/material";
 
 interface MyCardProps {
     settings: any,
@@ -17,7 +18,7 @@ const MyCard: FC<MyCardProps> = (props) => {
     const { settings, userCards, splitCardNum, handleButtonClick, t } = props;
     return (
         <div>
-            <div className={styles.card}>
+            <Box className={styles.card}>
                 <div>
                     <Slider {...settings}>
                         {userCards.length === 0 ? (
@@ -57,7 +58,7 @@ const MyCard: FC<MyCardProps> = (props) => {
                 <button className={styles.btnCard} onClick={handleButtonClick}>
                     {t("cards.createCard")}
                 </button>
-            </div>
+            </Box>
         </div>
     );
 };

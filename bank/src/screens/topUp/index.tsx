@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from "react";
-import { collection, doc, getDoc, updateDoc, addDoc } from "firebase/firestore";
 import styles from "./style.module.css";
 import { db } from "../../config/firebase";
 import { observer } from "mobx-react";
@@ -11,6 +10,7 @@ import { ComponentProps } from "../../types/ComponentProps";
 import { Currency } from "../../types/CurrencyProp";
 import { getThemeClass } from "../../utils/DarkLightStyle";
 import { CardData } from "../../types/CardDataType";
+import topUpStore from "../../stores/handleTopUpStore";
 
 interface TopUpProps extends ComponentProps {
   currency: Currency;
@@ -20,9 +20,8 @@ interface TopUpProps extends ComponentProps {
 
 const TopUp: FC<TopUpProps> = observer((props) => {
   const { theme, t, currency, userId, userCards } = props;
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<number | null>(null);
   const [currencySymbol, setCurrencySymbol] = useState<string>("");
-  const [message, setMessage] = useState<string | null>("");
   const [selectedCardId, setSelectedCardId] = useState<string>("");
   const [selectedCard, setSelectedCard] = useState<any>(null);
   const [isCardBlocked, setCardBlocked] = useState<boolean>(false);
@@ -30,7 +29,6 @@ const TopUp: FC<TopUpProps> = observer((props) => {
   useEffect(() => {
     if (userId && userCards && selectedCardId) {
       const card = userCards.find((card) => card.id === selectedCardId);
-      console.log("Selected card", card);
       setSelectedCard(card);
       if (card) {
         setCardBlocked(card.data.isBlocked);
@@ -48,58 +46,18 @@ const TopUp: FC<TopUpProps> = observer((props) => {
       setSelectedCardId(userCards[0]?.id!);
     }
   }, [userCards]);
-
   const handleTopUpBalance = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    if (isCardBlocked) {
-      return setMessage(t("requisites.cardIsBlocked"));
-    }
-    if (!selectedCardId) {
-      return setMessage(t("topUp.selectCard"));
-    }
-    try {
-      const cardDocRef = doc(db, "cards", selectedCardId);
-      const cardSnapshot = await getDoc(cardDocRef);
-
-      if (!cardSnapshot.exists()) {
-        console.error("Document not found");
-        setMessage(t("topUp.errorMessage"));
-        return;
-      }
-
-      const currentBalance = cardSnapshot.data().balance;
-      const newBalance =
-        currentBalance +
-        (selectedCard &&
-        selectedCard.data.currency === "USD" &&
-        currency &&
-        "UAH" in currency
-          ? amount / (currency.UAH as number)
-          : amount);
-
-      await updateDoc(cardDocRef, {
-        balance: newBalance,
-      });
-
-      const transactionsCollection = collection(db, "transactions");
-      const transactionData = {
-        userId,
-        cardId: selectedCardId,
-        cardNumber: cardSnapshot.data().cardNumber,
-        amount,
-        date: new Date(),
-        type: "Card Top-Up",
-      };
-      await addDoc(transactionsCollection, transactionData);
-
-      console.log("Balance successfully topped up.");
-      setMessage(t("topUp.successMessage"));
-    } catch (error) {
-      console.error("Error topping up balance: ", error);
-      setMessage(t("topUp.errorMessage"));
-    }
-    setMessage("");
+    await topUpStore.handleTopUpBalance(
+      db,
+      t,
+      currency,
+      userCards,
+      userId,
+      selectedCard,
+      selectedCardId,
+      isCardBlocked
+    );
   };
   const wrapperTheme = `${styles.wrapper} ${
     theme === "dark" ? styles.wrapperDarkTheme : styles.wrapperLightTheme
@@ -125,7 +83,7 @@ const TopUp: FC<TopUpProps> = observer((props) => {
           <Box className={styles.formGroup}>
             <TextField
               type="number"
-              value={amount}
+              value={amount !== undefined ? amount : ""}
               label={t("topUp.amountLabel")}
               placeholder={currencySymbol}
               onChange={(e) => setAmount(parseFloat(e.target.value))}
@@ -136,7 +94,7 @@ const TopUp: FC<TopUpProps> = observer((props) => {
           <ButtonPayment type={"submit"}>
             {t("topUp.topUpButton")}
           </ButtonPayment>
-          <Typography>{message}</Typography>
+          <Typography>{topUpStore.message}</Typography>
         </form>
       </Box>
     </Box>

@@ -1,6 +1,4 @@
-import React, { FC, useState } from "react";
-import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import React, { FC, useState } from "react"
 import styles from "./style.module.css";
 import {
   Box,
@@ -12,10 +10,12 @@ import ButtonPayment from "../../components/buttonPayment";
 import { useParams } from "react-router-dom";
 import {ComponentProps} from "../../types/ComponentProps";
 import {CardData} from "../../types/CardDataType";
+import paymentStore from "../../stores/handlePaymentStore";
 
 interface RequisitesProps extends ComponentProps{
-  userId: string | undefined
+  userId: any
   userCards: CardData[]
+  t: any
 }
 const Requisites: FC<RequisitesProps> = (props) => {
   const {t,theme, userId, userCards} = props
@@ -24,74 +24,7 @@ const Requisites: FC<RequisitesProps> = (props) => {
   const { iBan } = useParams<{ iBan: string }>()
   const [message, setMessage] = useState<string | any>('')
   const [iban, setIban] = useState<string>(iBan || "");
-
-  const handlePaymentSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const sourceCard: any = userCards.find((card: any) => card.id === selectedCard);
-    if (sourceCard?.data.isBlocked){
-      setMessage(t("requisites.cardIsBlocked"))
-      return;
-    }
-    if (!sourceCard) {
-      setMessage(t("requisites.selectSourceCard"));
-      return;
-    }
-
-    const amountToTransfer = parseFloat(amount);
-    if (isNaN(amountToTransfer)) {
-      setMessage(t("requisites.enterValidAmount"));
-      return;
-    }
-
-    if (sourceCard.data.balance < amountToTransfer) {
-      setMessage(t("requisites.insufficientBalance"));
-      return;
-    }
-
-    const q = query(collection(db, "cards"), where("accountNumber", "==", iban));
-    const querySnapshot = await getDocs(q);
-
-    if (querySnapshot.empty) {
-      setMessage(t("requisites.recipientCardNotFound"));
-      return;
-    }
-
-    const recipientCardDoc = querySnapshot.docs[0];
-    const recipientCard = recipientCardDoc.data();
-
-    if (!recipientCard || recipientCard.balance === undefined) {
-      setMessage(t("requisites.errorFetchingRecipientCard"));
-      return;
-    }
-
-    await updateDoc(doc(db, "cards", sourceCard.id), {
-      balance: sourceCard.data.balance - amountToTransfer,
-    });
-
-    await updateDoc(recipientCardDoc.ref, {
-      balance: recipientCard.balance + amountToTransfer,
-    });
-
-    const transactionsCollection = collection(db, "transactions");
-    const transactionData = {
-      userId,
-      cardId: selectedCard,
-      cardNumber: sourceCard.data.cardNumber,
-      amount: amountToTransfer,
-      date: new Date(),
-      type: t("requisites.transferType"),
-      iban,
-    };
-    await addDoc(transactionsCollection, transactionData);
-
-    setMessage(t("requisites.paymentSuccess"));
-
-    setAmount("");
-    setIban("");
-    setMessage("")
-  };
-
+  console.log(userCards.map(card=> card.data.cardNumber))
   return (
       <Box className={`${styles.main} ${theme === 'dark' ? styles.darkTheme : styles.lightTheme}`}>
         <div className={styles.trans}>
@@ -102,7 +35,7 @@ const Requisites: FC<RequisitesProps> = (props) => {
           </div>
         </div>
         <Box className={`${styles.container} ${theme === 'dark' ? styles.containerDarkTheme : styles.containerLightTheme}`}>
-          <form className={styles.form} onSubmit={handlePaymentSubmit}>
+          <form className={styles.form} onSubmit={(e) => paymentStore.handlePaymentSubmit(e,userCards,userId,selectedCard,t, amount,setMessage)}>
             <CardSelect
                 title={t("requisites.sourceCard")}
                 selectedCard={selectedCard}

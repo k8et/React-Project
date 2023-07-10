@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 
 interface MessageModalProps {
     onClose: () => void;
-    message: string;
+    message: string | null;
 }
 
 const MessageModal: React.FC<MessageModalProps> = ({ onClose, message }) => {
