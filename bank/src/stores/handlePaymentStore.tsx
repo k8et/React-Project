@@ -1,4 +1,4 @@
-import { action, makeObservable } from "mobx";
+import { makeObservable } from "mobx";
 import {
   addDoc,
   collection,
@@ -9,98 +9,121 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { CardData } from "../types/CardDataType";
 
 class PaymentStore {
-  iban = "";
-
   constructor() {
-    makeObservable(this, {
-      setIban: action,
-    });
+    makeObservable(this);
   }
 
   handlePaymentSubmit = async (
     e: React.FormEvent,
     userCards: CardData[],
-    userId: any,
+    userId: string | undefined,
     selectedCard: string,
-    t: any,
+    t: (key: string) => string,
     amount: string,
-    setMessage: any
+    setMessage: Dispatch<SetStateAction<string>>,
+    iban: string
   ) => {
     e.preventDefault();
-    console.log("action");
-    const sourceCard: any = userCards.find(
-      (card: any) => card.id === selectedCard
-    );
-    if (sourceCard?.data.isBlocked) {
-      setMessage(t("requisites.cardIsBlocked"));
-      return;
-    }
-    if (!sourceCard) {
-      setMessage(t("requisites.selectSourceCard"));
-      return;
-    }
 
-    const amountToTransfer = parseFloat(amount);
-    if (isNaN(amountToTransfer)) {
-      setMessage(t("requisites.enterValidAmount"));
-      return;
-    }
+    try {
+      const sourceCard: any = this.findSourceCard(userCards, selectedCard);
 
-    if (sourceCard.data.balance < amountToTransfer) {
-      setMessage(t("requisites.insufficientBalance"));
-      return;
-    }
+      if (sourceCard.isBlocked) {
+        return setMessage(t("requisites.cardIsBlocked"));
+      }
 
+      if (!sourceCard) {
+        return setMessage(t("requisites.selectSourceCard"));
+      }
+
+      const amountToTransfer = parseFloat(amount);
+
+      if (isNaN(amountToTransfer)) {
+        return setMessage(t("requisites.enterValidAmount"));
+      }
+
+      if (sourceCard.balance < amountToTransfer) {
+        return setMessage(t("requisites.insufficientBalance"));
+      }
+
+      const recipientCard = await this.findRecipientCard(iban);
+
+      if (!recipientCard) {
+        return setMessage(t("requisites.recipientCardNotFound"));
+      }
+
+      await this.updateSourceCardBalance(
+        sourceCard.id,
+        sourceCard.balance - amountToTransfer
+      );
+      await this.updateRecipientCardBalance(
+        recipientCard.ref,
+        recipientCard.balance + amountToTransfer
+      );
+      await this.addTransaction(
+        userId,
+        selectedCard,
+        sourceCard.data.cardNumber,
+        amountToTransfer,
+        iban,
+        t
+      );
+
+      setMessage(t("requisites.paymentSuccess"));
+    } catch (error) {
+      setMessage(t("requisites.paymentError"));
+      console.error(error);
+    }
+  };
+
+  findSourceCard = (userCards: CardData[], selectedCard: string) => {
+    return userCards.find((card) => card.id === selectedCard);
+  };
+
+  findRecipientCard = async (iban: string) => {
     const q = query(
       collection(db, "cards"),
-      where("accountNumber", "==", this.iban)
+      where("accountNumber", "==", iban)
     );
     const querySnapshot = await getDocs(q);
+    return querySnapshot.empty ? null : querySnapshot.docs[0].data();
+  };
 
-    if (querySnapshot.empty) {
-      setMessage(t("requisites.recipientCardNotFound"));
-      return;
-    }
+  updateSourceCardBalance = async (cardId: string, newBalance: number) => {
+    await updateDoc(doc(db, "cards", cardId), { balance: newBalance });
+  };
 
-    const recipientCardDoc = querySnapshot.docs[0];
-    const recipientCard = recipientCardDoc.data();
+  updateRecipientCardBalance = async (
+    recipientCardRef: any,
+    newBalance: number
+  ) => {
+    await updateDoc(recipientCardRef, { balance: newBalance });
+  };
 
-    if (!recipientCard || recipientCard.balance === undefined) {
-     setMessage(t("requisites.errorFetchingRecipientCard"));
-      return;
-    }
-
-    await updateDoc(doc(db, "cards", sourceCard.id), {
-      balance: sourceCard.data.balance - amountToTransfer,
-    });
-
-    await updateDoc(recipientCardDoc.ref, {
-      balance: recipientCard.balance + amountToTransfer,
-    });
-
+  addTransaction = async (
+    userId: string | undefined,
+    cardId: string,
+    cardNumber: string,
+    amount: number,
+    iban: string,
+    t: (key: string) => string
+  ) => {
     const transactionsCollection = collection(db, "transactions");
     const transactionData = {
       userId,
-      cardId: selectedCard,
-      cardNumber: sourceCard.data.cardNumber,
-      amount: amountToTransfer,
+      cardId,
+      cardNumber,
+      amount,
       date: new Date(),
       type: t("requisites.transferType"),
-      iban: this.iban,
+      iban,
     };
     await addDoc(transactionsCollection, transactionData);
-
-    setMessage(t("requisites.paymentSuccess"));
   };
-
-  setIban(iban: string) {
-    this.iban = iban;
-  }
-
 }
 
 const paymentStore = new PaymentStore();

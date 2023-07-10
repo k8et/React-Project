@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "./style.module.css";
-import { db } from "../../config/firebase";
 import { observer } from "mobx-react";
 import { Box, TextField, Typography } from "@mui/material";
 import Top from "../../assets/svg/ServiceBonds.svg";
@@ -20,10 +19,11 @@ interface TopUpProps extends ComponentProps {
 
 const TopUp: FC<TopUpProps> = observer((props) => {
   const { theme, t, currency, userId, userCards } = props;
-  const [amount, setAmount] = useState<number | null>(null);
+  const [amount, setAmount] = useState<string>("");
   const [currencySymbol, setCurrencySymbol] = useState<string>("");
   const [selectedCardId, setSelectedCardId] = useState<string>("");
-  const [selectedCard, setSelectedCard] = useState<any>(null);
+  const [message, setMessage] = useState<string>("");
+  const [selectedCard, setSelectedCard] = useState<CardData | undefined>();
   const [isCardBlocked, setCardBlocked] = useState<boolean>(false);
 
   useEffect(() => {
@@ -46,19 +46,7 @@ const TopUp: FC<TopUpProps> = observer((props) => {
       setSelectedCardId(userCards[0]?.id!);
     }
   }, [userCards]);
-  const handleTopUpBalance = async (event: React.FormEvent) => {
-    event.preventDefault();
-    await topUpStore.handleTopUpBalance(
-      db,
-      t,
-      currency,
-      userCards,
-      userId,
-      selectedCard,
-      selectedCardId,
-      isCardBlocked
-    );
-  };
+
   const wrapperTheme = `${styles.wrapper} ${
     theme === "dark" ? styles.wrapperDarkTheme : styles.wrapperLightTheme
   }`;
@@ -71,7 +59,23 @@ const TopUp: FC<TopUpProps> = observer((props) => {
         </Box>
       </Box>
       <Box className={wrapperTheme}>
-        <form onSubmit={handleTopUpBalance} className={styles.form}>
+        <form
+          className={styles.form}
+          onSubmit={(e) => {
+            topUpStore.handleTopUpBalance(
+                e,
+                t,
+                currency,
+                userCards,
+                userId,
+                selectedCard,
+                selectedCardId,
+                isCardBlocked,
+                setMessage,
+                amount
+             ).then(r => r);
+          }}
+        >
           <Box className={styles.formGroup}>
             <CardSelect
               title={t("topUp.cardTopUp")}
@@ -86,7 +90,7 @@ const TopUp: FC<TopUpProps> = observer((props) => {
               value={amount !== undefined ? amount : ""}
               label={t("topUp.amountLabel")}
               placeholder={currencySymbol}
-              onChange={(e) => setAmount(parseFloat(e.target.value))}
+              onChange={(e) => setAmount(e.target.value)}
               required
               className={styles.input}
             />
@@ -94,7 +98,7 @@ const TopUp: FC<TopUpProps> = observer((props) => {
           <ButtonPayment type={"submit"}>
             {t("topUp.topUpButton")}
           </ButtonPayment>
-          <Typography>{topUpStore.message}</Typography>
+          <Typography>{message}</Typography>
         </form>
       </Box>
     </Box>

@@ -35,7 +35,7 @@ interface TransferProps extends ComponentProps {
 const Transfer: FC<TransferProps> = observer((props) => {
     const {t, theme, currency, userId, userCards} = props
     const [amount, setAmount] = useState<string>("");
-    const [message, setMessage] = useState<string | any>('')
+    const [message, setMessage] = useState<string | null>(null)
     const {card} = useParams<{ card: string }>();
     const [destinationCardNumber, setDestinationCardNumber] = useState<string>(card || "");
     const [selectedCard, setSelectedCard] = useState<string>('');
