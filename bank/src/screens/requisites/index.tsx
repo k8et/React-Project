@@ -21,6 +21,18 @@ const Requisites: FC<RequisitesProps> = (props) => {
   const { iBan } = useParams<{ iBan: string }>();
   const [message, setMessage] = useState<string>("");
   const [iban, setIban] = useState<string>(iBan || "");
+  const handlePayment = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    paymentStore.handlePaymentSubmit(
+        userCards,
+        userId,
+        selectedCard,
+        t,
+        amount,
+        setMessage,
+        iban
+     ).then(r => r);
+  };
   return (
     <Box
       className={`${styles.main} ${
@@ -43,18 +55,7 @@ const Requisites: FC<RequisitesProps> = (props) => {
       >
         <form
           className={styles.form}
-          onSubmit={(e) =>
-            paymentStore.handlePaymentSubmit(
-              e,
-              userCards,
-              userId,
-              selectedCard,
-              t,
-              amount,
-              setMessage,
-              iban
-            )
-          }
+          onSubmit={handlePayment}
         >
           <CardSelect
             title={t("requisites.sourceCard")}

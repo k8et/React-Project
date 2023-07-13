@@ -2,7 +2,7 @@ import { makeObservable, observable } from "mobx";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
 
-export interface CardData {
+ interface CardData {
   id: string;
   data: any;
 }

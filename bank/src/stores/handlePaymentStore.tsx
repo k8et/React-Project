@@ -1,4 +1,3 @@
-import { makeObservable } from "mobx";
 import {
   addDoc,
   collection,
@@ -11,14 +10,14 @@ import {
 import { db } from "../config/firebase";
 import React, { Dispatch, SetStateAction } from "react";
 import { CardData } from "../types/CardDataType";
+import { action, makeObservable } from "mobx";
 
 class PaymentStore {
   constructor() {
-    makeObservable(this);
+    makeObservable(this, { handlePaymentSubmit: action });
   }
 
   handlePaymentSubmit = async (
-    e: React.FormEvent,
     userCards: CardData[],
     userId: string | undefined,
     selectedCard: string,
@@ -27,8 +26,6 @@ class PaymentStore {
     setMessage: Dispatch<SetStateAction<string>>,
     iban: string
   ) => {
-    e.preventDefault();
-
     try {
       const sourceCard: any = this.findSourceCard(userCards, selectedCard);
 

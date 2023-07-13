@@ -46,7 +46,22 @@ const TopUp: FC<TopUpProps> = observer((props) => {
       setSelectedCardId(userCards[0]?.id!);
     }
   }, [userCards]);
-
+  const topUp = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    topUpStore
+      .handleTopUpBalance(
+        t,
+        currency,
+        userCards,
+        userId,
+        selectedCard,
+        selectedCardId,
+        isCardBlocked,
+        setMessage,
+        amount
+      )
+      .then((r) => r);
+  };
   const wrapperTheme = `${styles.wrapper} ${
     theme === "dark" ? styles.wrapperDarkTheme : styles.wrapperLightTheme
   }`;
@@ -59,23 +74,7 @@ const TopUp: FC<TopUpProps> = observer((props) => {
         </Box>
       </Box>
       <Box className={wrapperTheme}>
-        <form
-          className={styles.form}
-          onSubmit={(e) => {
-            topUpStore.handleTopUpBalance(
-                e,
-                t,
-                currency,
-                userCards,
-                userId,
-                selectedCard,
-                selectedCardId,
-                isCardBlocked,
-                setMessage,
-                amount
-             ).then(r => r);
-          }}
-        >
+        <form className={styles.form} onSubmit={topUp}>
           <Box className={styles.formGroup}>
             <CardSelect
               title={t("topUp.cardTopUp")}

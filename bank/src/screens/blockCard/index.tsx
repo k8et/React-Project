@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { FC, useEffect, useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { Box, Button, Typography } from "@mui/material";
@@ -6,23 +6,25 @@ import styles from "./style.module.css";
 import CardSelect from "../../components/cardSelect";
 import cardBlock from "../../assets/svg/CardBlock.svg";
 import { ComponentProps } from "../../types/ComponentProps";
-import {CardData} from "../../types/CardDataType";
+import { CardData } from "../../types/CardDataType";
 
-interface BlockCardProps extends ComponentProps{
-  userCards: CardData[]
+interface BlockCardProps extends ComponentProps {
+  userCards: CardData[];
 }
-const BlockCard: React.FC<BlockCardProps> = (props) => {
-  const { t, theme, userCards} = props;
+
+const BlockCardComponent: FC<BlockCardProps> = (props) => {
+  const { t, theme, userCards } = props;
   const [selectedCardId, setSelectedCardId] = useState<string>("");
   const [isBlocked, setIsBlocked] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [buttonText, setButtonText] = useState<string | null>(
+    t("blockCard.blockButton")
+  );
+
   const handleBlockCard = async () => {
-    setLoading(true);
     try {
       const cardDocRef = doc(db, "cards", selectedCardId);
       await updateDoc(cardDocRef, { isBlocked: !isBlocked });
-
       setMessage(
         `Card ${
           !isBlocked
@@ -37,10 +39,17 @@ const BlockCard: React.FC<BlockCardProps> = (props) => {
         error
       );
       setMessage(t("blockCard.error"));
-    } finally {
-      setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const selectedCard = userCards.find((card) => card.id === selectedCardId);
+    if (!(selectedCard && selectedCard.data.isBlocked)) {
+      setButtonText(t("blockCard.blockButton"));
+    } else {
+      setButtonText(t("blockCard.unblockButton"));
+    }
+  }, [selectedCardId, userCards]);
 
   return (
     <Box
@@ -71,12 +80,9 @@ const BlockCard: React.FC<BlockCardProps> = (props) => {
         <Button
           className={styles.button}
           onClick={handleBlockCard}
-          disabled={loading}
           variant="contained"
         >
-          {isBlocked
-            ? t("blockCard.unblockButton")
-            : t("blockCard.blockButton")}
+          {buttonText}
         </Button>
         {message && (
           <Typography className={styles.message}>{message}</Typography>
@@ -86,4 +92,4 @@ const BlockCard: React.FC<BlockCardProps> = (props) => {
   );
 };
 
-export default BlockCard;
+export default BlockCardComponent;

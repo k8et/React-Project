@@ -1,20 +1,15 @@
-import { makeAutoObservable } from "mobx";
 import {addDoc, collection, doc, getDoc, updateDoc} from "firebase/firestore";
 import {Currency} from "../types/CurrencyProp";
 import {CardData} from "../types/CardDataType";
 import React, {Dispatch, SetStateAction} from "react";
 import {db} from "../config/firebase";
+import {action, makeObservable} from "mobx";
 
 class TopUpStore {
-
-
     constructor() {
-        makeAutoObservable(this);
+        makeObservable(this,{handleTopUpBalance: action})
     }
-
-
     handleTopUpBalance = async (
-        event: React.FormEvent,
         t: ((key:string)=>string),
         currency: Currency,
         userCards: CardData[],
@@ -25,7 +20,6 @@ class TopUpStore {
         setMessage: Dispatch<SetStateAction<string>>,
         amount: string,
     ) => {
-        event.preventDefault();
         if (isCardBlocked) {
             return setMessage(t("requisites.cardIsBlocked"));
         }
