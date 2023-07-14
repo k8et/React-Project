@@ -16,7 +16,7 @@ const LeftSide = () => {
   const { i18n } = useTranslation();
 
   const handleLanguageChange = (event: SelectChangeEvent) => {
-    i18n.changeLanguage(event.target.value);
+    i18n.changeLanguage(event.target.value).then(r => r);
   };
   const themeContext = useContext(ThemeContext);
   if (!themeContext) {

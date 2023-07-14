@@ -1,5 +1,6 @@
+
 .main{
-    height: 100vh;
+    max-height: 100vh;
     width: 200px;
     background-color: #0099dc;
     display: flex;
@@ -41,14 +42,11 @@
     font-weight: 500;
 }
 .i18n{
-    position: relative;
-    top: 600px;
+
     right: 15px;
 }
 .themeSwitcher{
-    position: relative;
-    top: 620px;
-    right: 20px;
+
 }
 @media (max-width: 1024px) {
         .main {
