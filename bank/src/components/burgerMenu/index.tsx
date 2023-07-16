@@ -1,14 +1,9 @@
-import React, { useState } from "react";
-import { styled, alpha } from "@mui/material/styles";
+import React, { FC, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-
-//drawer elements used
 import Drawer from "@mui/material/Drawer";
 import CloseIcon from "@mui/icons-material/Close";
 import Divider from "@mui/material/Divider";
@@ -18,125 +13,93 @@ import ListItemText from "@mui/material/ListItemText";
 import FolderIcon from "@mui/icons-material/Folder";
 import ImageIcon from "@mui/icons-material/Image";
 import DescriptionIcon from "@mui/icons-material/Description";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
+import DragHandleIcon from "@mui/icons-material/DragHandle";
+import styles from "../layout/leftSide/style.module.css";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import SwitcherLanguage from "../switcherLanguage";
+import ThemeSwitcher from "../themeSwitcher";
 
+const BurgerMenu = () => {
+  const { i18n } = useTranslation();
+  const [open, setState] = useState(false);
 
-//search as JSX
+  // @ts-ignore
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === "keydown") {
+      return;
+    }
+    setState(open);
+  };
 
-export default function MainNavigation() {
-    //react useState hook to save the current open/close state of the drawer, normally variables dissapear afte the function was executed
-    const [open, setState] = useState(false);
+  return (
+    <AppBar
+      position="absolute"
+      sx={{
+        backgroundColor: "white",
+        width: "0px",
+        left: "1px",
+      }}
+    >
+      <DragHandleIcon style={{ color: "black" }} onClick={toggleDrawer(true)} />
 
-    //function that is being called every time the drawer should open or close, the keys tab and shift are excluded so the user can focus between the elements with the keys
-    // @ts-ignore
-    const toggleDrawer = (open) => (event) => {
-        if (
-            event.type === "keydown"
-        ) {
-            return;
-        }
-        //changes the function state according to the value of open
-        setState(open);
-    };
+      <Container maxWidth="lg">
+        <Drawer
+          anchor="left"
+          open={open}
+          onClose={toggleDrawer(false)}
+          // @ts-ignore
+          onOpen={toggleDrawer(true)}
+        >
+          <Box
+            sx={{
+              backgroundColor: "#0099dc",
+              p: 2,
+              height: 1,
+            }}
+          >
+            <IconButton sx={{ mb: 2 }}>
+              <CloseIcon onClick={toggleDrawer(false)} />
+            </IconButton>
 
-    return (
-        <AppBar position="static">
-            <Container maxWidth="lg" >
-                <Toolbar>
-                    <Box
-                        component="div"
-                        sx={{
-                            display: {
-                                xs: "none",
-                                sm: "block"
-                            }
-                        }}
-                    >
-                    </Box>
+            <Divider sx={{ mb: 2 }} />
 
-                    <IconButton
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={toggleDrawer(true)}
+            <Box sx={{ mb: 2 }}>
+              <ListItemButton></ListItemButton>
 
-                    >
-                        open
-                    </IconButton>
+              <ListItemButton>
+                <ListItemIcon>
+                  <DescriptionIcon sx={{ color: "primary.main" }} />
+                </ListItemIcon>
+                <ListItemText primary="Documents" />
+              </ListItemButton>
 
-                    {/* The outside of the drawer */}
-                    <Drawer
-                        //from which side the drawer slides in
-                        anchor="left"
-                        //if open is true --> drawer is shown
-                        open={open}
-                        //function that is called when the drawer should close
-                        onClose={toggleDrawer(false)}
-                        // @ts-ignore
-                        onOpen={toggleDrawer(true)}
-                    >
-                        {/* The inside of the drawer */}
-                        <Box
-                            sx={{
-                                p: 2,
-                                height: 1,
-                                backgroundColor: "#dbc8ff"
-                            }}
-                        >
-                            {/* when clicking the icon it calls the function toggleDrawer and closes the drawer by setting the variable open to false */}
-                            <IconButton sx={{ mb: 2 }}>
-                                <CloseIcon onClick={toggleDrawer(false)} />
-                            </IconButton>
+              <ListItemButton>
+                <ListItemIcon>
+                  <FolderIcon sx={{ color: "primary.main" }} />
+                </ListItemIcon>
+                <ListItemText primary="Other" />
+              </ListItemButton>
+            </Box>
 
-                            <Divider sx={{ mb: 2 }} />
-
-                            <Box sx={{ mb: 2 }}>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <ImageIcon sx={{ color: "primary.main" }} />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Pictures" />
-                                </ListItemButton>
-
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <DescriptionIcon sx={{ color: "primary.main" }} />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Documents" />
-                                </ListItemButton>
-
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <FolderIcon sx={{ color: "primary.main" }} />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Other" />
-                                </ListItemButton>
-                            </Box>
-
-
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    position: "absolute",
-                                    bottom: "0",
-                                    left: "50%",
-                                    transform: "translate(-50%, 0)"
-                                }}
-                            >
-                                <Button variant="contained" sx={{ m: 1, width: 0.5 }}>
-                                    Register
-                                </Button>
-                                <Button variant="outlined" sx={{ m: 1, width: 0.5 }}>
-                                    Login
-                                </Button>
-                            </Box>
-                        </Box>
-                    </Drawer>
-                </Toolbar>
-            </Container>
-        </AppBar>
-    );
-}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                position: "absolute",
+                bottom: "0",
+                left: "50%",
+                transform: "translate(-50%, 0)",
+              }}
+            >
+              <SwitcherLanguage />
+              <ThemeSwitcher className={styles.themeSwitcher} />
+            </Box>
+          </Box>
+        </Drawer>
+      </Container>
+    </AppBar>
+  );
+};
+export default BurgerMenu;

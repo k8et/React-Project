@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
-import {Select, MenuItem, SelectChangeEvent} from "@mui/material";
+import {MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import styles from "./style.module.css";
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
@@ -11,6 +11,8 @@ import {Link} from "react-router-dom";
 import ThemeSwitcher from "../../themeSwitcher";
 import {ThemeContext} from "../../themeProvider";
 import BurgerMenu from "../../burgerMenu";
+import Switch from "@mui/material/Switch";
+import SwitcherLanguage from "../../switcherLanguage";
 
 const LeftSide = () => {
     const {t} = useTranslation();
@@ -28,9 +30,7 @@ const LeftSide = () => {
         };
     }, []);
 
-    const handleLanguageChange = (event: SelectChangeEvent) => {
-        i18n.changeLanguage(event.target.value).then(r => r);
-    };
+
     const themeContext = useContext(ThemeContext);
     if (!themeContext) {
         return null;
@@ -38,8 +38,9 @@ const LeftSide = () => {
     const {theme} = themeContext;
     return (
         <div>
-            {windowWidth <= 1024 ? (
-                <BurgerMenu/>) : (
+            {windowWidth <= 1100 ? (
+                <BurgerMenu />
+            ) : (
                 <div
                     className={`${styles.main} ${
                         theme === "dark" ? styles.darkTheme : styles.lightTheme
@@ -71,17 +72,7 @@ const LeftSide = () => {
                             <Link to="/profile">{t("leftSide.myProfile")}</Link>
                         </div>
                     </div>
-                    <Select
-                        variant={"standard"}
-                        size={"small"}
-                        value={i18n.language}
-                        onChange={handleLanguageChange}
-                        className={styles.i18n}
-                        sx={{color: "white"}}
-                    >
-                        <MenuItem value={"en"}>English</MenuItem>
-                        <MenuItem value={"ru"}>Русский</MenuItem>
-                    </Select>
+                   <SwitcherLanguage/>
                     <ThemeSwitcher className={styles.themeSwitcher}/>
                 </div>
             )}
