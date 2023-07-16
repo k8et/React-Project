@@ -20,6 +20,7 @@ import CardDetails from "./components/cardDetails";
 import MyCard from "./components/myCard";
 import {CardInfo} from "../../types/CardInfoType";
 import {CardData} from "../../types/CardDataType";
+import { Grid } from "@mui/material";
 interface CardsProps extends ComponentProps{
   userCards: CardData[]
   userId: string | undefined
@@ -144,12 +145,7 @@ const Cards: FC<CardsProps> = (props) => {
         theme === "dark" ? styles.darkTheme : styles.lightTheme
       }`}
     >
-      <div className={styles.cardIcon}>
-        <ArrowBackIosNewIcon sx={{ width: "15px" }} className={styles.icon} />
-        <h1>{t("cards.title")}</h1>
-      </div>
-      <div className={styles.mainContainer}>
-        <div className={styles.myCardCardDetailBox}>
+        <Grid className={styles.myCardCardDetailBox}>
           <MyCard
               settings={settings}
               userCards={userCards}
@@ -164,11 +160,8 @@ const Cards: FC<CardsProps> = (props) => {
               userName={userName}
               lastUserName={lastUserName}
           />
-        </div>
-        <div className={styles.actionCardBox}>
           <ActionCard t={t} />
-        </div>
-      </div>
+        </Grid>
       {showModal && (
         <Modal
           onClose={handleModalClose}

@@ -61,10 +61,9 @@ const Navigation: FC = observer(() => {
   }
   const { theme } = themeContext;
   return (
-    <div>
       <div className={styles.main}>
         {!isLoginPage && !isRegisterPage && !isPasswordReset && <LeftSide />}
-        <div className={styles.header}>
+          <div className={styles.headerItem}>
           {!isLoginPage && !isRegisterPage && !isPasswordReset && (
             <Header currency={currency} />
           )}
@@ -179,9 +178,8 @@ const Navigation: FC = observer(() => {
             <Route path="/profile" element={<Profile theme={theme} t={t} />} />
             <Route path="/password-reset" element={<PasswordReset />} />
           </Routes>
-        </div>
-      </div>
-      {isChatBotPage && <ChatBot />}
+          </div>
+          {isChatBotPage && <ChatBot />}
     </div>
   );
 });

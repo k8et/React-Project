@@ -1,6 +1,6 @@
 
 .main{
-    max-height: 100vh;
+    height: 100vh;
     width: 200px;
     background-color: #0099dc;
     display: flex;
@@ -45,35 +45,4 @@
 
     right: 15px;
 }
-.themeSwitcher{
 
-}
-@media (max-width: 1024px) {
-        .main {
-            width: 130px;
-            font-size: 13px;
-        }
-
-    .iconLogoPos {
-        margin-top: 50px;
-    }
-
-    .nav {
-        margin-top: 70px;
-
-    }
-
-    .nav div {
-        margin-bottom: 10px;
-    }
-
-    .i18n {
-        top: 200px;
-        right: 10px;
-    }
-    .themeSwitcher{
-        position: relative;
-        top: 220px;
-        right: 20px;
-    }
-}

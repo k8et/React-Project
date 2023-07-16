@@ -1,0 +1,13 @@
+
+.burgerMenu{
+    position: absolute;
+}
+.menuItems{
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 0;
+
+    padding: 0;
+    margin: 0;
+}
