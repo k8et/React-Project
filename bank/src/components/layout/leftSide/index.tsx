@@ -39,7 +39,7 @@ const LeftSide = () => {
     return (
         <div>
             {windowWidth <= 1100 ? (
-                <BurgerMenu />
+                <BurgerMenu t={t} theme={theme}/>
             ) : (
                 <div
                     className={`${styles.main} ${

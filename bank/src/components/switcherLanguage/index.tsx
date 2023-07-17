@@ -14,7 +14,7 @@ const SwitcherLanguage = () => {
             size={"small"}
             value={i18n.language}
             onChange={handleLanguageChange}
-            sx={{color: "white"}}
+            sx={{color: "Black"}}
         >
             <MenuItem value={"en"}>English</MenuItem>
             <MenuItem value={"ru"}>Русский</MenuItem>

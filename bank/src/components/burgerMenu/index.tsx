@@ -1,6 +1,5 @@
-import React, { FC, useState } from "react";
+import React, {FC, useState} from "react";
 import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -8,98 +7,155 @@ import Drawer from "@mui/material/Drawer";
 import CloseIcon from "@mui/icons-material/Close";
 import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import FolderIcon from "@mui/icons-material/Folder";
-import ImageIcon from "@mui/icons-material/Image";
-import DescriptionIcon from "@mui/icons-material/Description";
-import Button from "@mui/material/Button";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
-import styles from "../layout/leftSide/style.module.css";
-import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import SwitcherLanguage from "../switcherLanguage";
 import ThemeSwitcher from "../themeSwitcher";
+import WidgetsIcon from "@mui/icons-material/Widgets";
+import {Link} from "react-router-dom";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import HistoryIcon from "@mui/icons-material/History";
 
-const BurgerMenu = () => {
-  const { i18n } = useTranslation();
-  const [open, setState] = useState(false);
+interface BurgerMenuProps {
+    t: (key: string) => string;
+    theme: "dark" | "light";
+}
 
-  // @ts-ignore
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === "keydown") {
-      return;
-    }
-    setState(open);
-  };
 
-  return (
-    <AppBar
-      position="absolute"
-      sx={{
-        backgroundColor: "white",
-        width: "0px",
-        left: "1px",
-      }}
-    >
-      <DragHandleIcon style={{ color: "black" }} onClick={toggleDrawer(true)} />
+const BurgerMenu: FC<BurgerMenuProps> = ({t, theme}) => {
+    const [open, setOpen] = useState(false);
 
-      <Container maxWidth="lg">
-        <Drawer
-          anchor="left"
-          open={open}
-          onClose={toggleDrawer(false)}
-          // @ts-ignore
-          onOpen={toggleDrawer(true)}
-        >
-          <Box
-            sx={{
-              backgroundColor: "#0099dc",
-              p: 2,
-              height: 1,
-            }}
-          >
-            <IconButton sx={{ mb: 2 }}>
-              <CloseIcon onClick={toggleDrawer(false)} />
-            </IconButton>
+    const toggleDrawer = (open: boolean) => (
+        event: React.KeyboardEvent | React.MouseEvent
+    ) => {
+        if (event.type === "keydown") {
+            return;
+        }
+        setOpen(open);
+    };
+    const handleLinkClick = () => {
+        setOpen(false);
+    };
 
-            <Divider sx={{ mb: 2 }} />
+    const styles = {
+        appBar: {
+            position: "absolute",
+            backgroundColor: "white",
+            width: "0px",
+            left: "1px",
+        },
+        dragHandleIcon: {
+            color: "black",
+        },
+        drawerContainer: {
+            p: 2,
+            height: 1,
+        },
+        closeButton: {
+            mb: 2,
+        },
+        listItemButtonContainer: {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "8px",
+        },
+        link: {
+            color: theme === "dark" ? "white" : "black",
+            textDecoration: "none",
+        },
+        bottomBox: {
+            display: "flex",
+            justifyContent: "center",
+            position: "absolute",
+            bottom: "0",
+            left: "50%",
+            transform: "translate(-50%, 0)",
+        },
+        list: {
+            display: "flex", alignItems: "center"
+        },
+        widget: {
+            marginRight: "8px"
+        },
+        divider: {
+            mb: 2
+        }
+    };
+    return (
+        <AppBar position="absolute" sx={styles.appBar}>
+            <DragHandleIcon
+                style={styles.dragHandleIcon}
+                onClick={toggleDrawer(true)}
+            />
 
-            <Box sx={{ mb: 2 }}>
-              <ListItemButton></ListItemButton>
+            <Container maxWidth="lg">
+                <Drawer
+                    anchor="left"
+                    open={open}
+                    onClose={toggleDrawer(false)}
+                    // @ts-ignore
+                    onOpen={toggleDrawer(true)}
+                >
+                    <Box sx={styles.drawerContainer}>
+                        <IconButton sx={styles.closeButton}>
+                            <CloseIcon onClick={toggleDrawer(false)}/>
+                        </IconButton>
 
-              <ListItemButton>
-                <ListItemIcon>
-                  <DescriptionIcon sx={{ color: "primary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="Documents" />
-              </ListItemButton>
+                        <Divider sx={styles.divider}/>
 
-              <ListItemButton>
-                <ListItemIcon>
-                  <FolderIcon sx={{ color: "primary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="Other" />
-              </ListItemButton>
-            </Box>
+                        <Box sx={styles.listItemButtonContainer}>
+                            <ListItemButton sx={styles.list}>
+                                <WidgetsIcon sx={styles.widget}/>
+                                <Link
+                                    to="/home"
+                                    style={styles.link}
+                                    onClick={handleLinkClick}
+                                >
+                                    {t("leftSide.myBank")}
+                                </Link>
+                            </ListItemButton>
+                            <ListItemButton sx={styles.list}>
+                                <CreditCardIcon sx={styles.widget}/>
+                                <Link
+                                    to="/cards"
+                                    style={styles.link}
+                                    onClick={handleLinkClick}
+                                >
+                                    {t("leftSide.myCard")}
+                                </Link>
+                            </ListItemButton>
+                            <ListItemButton sx={styles.list}>
+                                <PaymentsIcon sx={styles.widget}/>
+                                <Link
+                                    to="/requisites"
+                                    style={styles.link}
+                                    onClick={handleLinkClick}
+                                >
+                                    {t("leftSide.payment")}
+                                </Link>
+                            </ListItemButton>
+                            <ListItemButton sx={styles.list}>
+                                <HistoryIcon sx={styles.widget}/>
+                                <Link
+                                    to="/transaction-history"
+                                    style={styles.link}
+                                    onClick={handleLinkClick}
+                                >
+                                    {t("leftSide.history")}
+                                </Link>
+                            </ListItemButton>
+                        </Box>
 
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                position: "absolute",
-                bottom: "0",
-                left: "50%",
-                transform: "translate(-50%, 0)",
-              }}
-            >
-              <SwitcherLanguage />
-              <ThemeSwitcher className={styles.themeSwitcher} />
-            </Box>
-          </Box>
-        </Drawer>
-      </Container>
-    </AppBar>
-  );
+                        <Box sx={styles.bottomBox}>
+                            <SwitcherLanguage/>
+                            <ThemeSwitcher/>
+                        </Box>
+                    </Box>
+                </Drawer>
+            </Container>
+        </AppBar>
+    );
 };
+
 export default BurgerMenu;
