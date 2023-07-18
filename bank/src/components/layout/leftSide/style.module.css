@@ -22,13 +22,19 @@
 }
 .nav{
     display: flex;
+    justify-content: space-between;
     width: 100%;
-    gap: 10px;
-    margin-left: 10px;
+    height: 100%;
     flex-direction: column;
     margin-top: 50px;
 }
-.nav div{
+.navContainer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    gap: 15px
+}
+.navItem{
     display: flex;
     margin-left: 10px;
     gap: 15px;
@@ -45,4 +51,9 @@
 
     right: 15px;
 }
-
+.lngTheme{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}

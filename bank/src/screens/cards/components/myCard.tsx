@@ -54,9 +54,11 @@ const MyCard: FC<MyCardProps> = (props) => {
           )}
         </Slider>
       </div>
-      <button className={styles.btnCard} onClick={handleButtonClick}>
-        {t("cards.createCard")}
-      </button>
+      <div className={styles.btnPos}>
+        <button className={styles.btnCard} onClick={handleButtonClick}>
+          {t("cards.createCard")}
+        </button>
+      </div>
     </Box>
   );
 };

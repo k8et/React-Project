@@ -70,6 +70,7 @@ const BurgerMenu: FC<BurgerMenuProps> = ({t, theme}) => {
             position: "absolute",
             bottom: "0",
             left: "50%",
+            marginBottom:'5px',
             transform: "translate(-50%, 0)",
         },
         list: {

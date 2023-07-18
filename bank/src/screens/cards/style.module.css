@@ -174,10 +174,14 @@
     gap: 2px;
     height: 80px;
 }
-
+.btnPos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+}
 .btnCard {
-    margin-left: 165px;
-    margin-top: 200px;
     background-color: #0099dc;
     color: white;
     border: none;
@@ -220,14 +224,6 @@
         width: 45px;
     }
 
-    .btnCard {
-        display: flex;
-        align-items: center;
-        margin-left: 125px;
-        margin-top: 110px;
-        font-size: 13px;
-        height: 30px;
-    }
 
     .cardDetails {
         width: 315px;
@@ -269,5 +265,80 @@
     }
 
 }
+@media (max-width: 1600px){
+    .conDet {
+        gap: 195px;
+        display: flex;
+    }
+    .cardBack {
+        width: 265px;
+        height: 130px;
+    }
+    .cardLogo {
+        width: 65px;
+    }
+    .cardBack p {
+        font-size: 16px;
+    }
 
+    .cardAction {
+        padding: 20px;
+        height: 100px;
+        width: 83%;
+        border: 2px solid #c5dbec;
+        border-radius: 20px;
+    }
+
+    .card {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 20px;
+        border: 2px solid #c5dbec;
+        width: 37%;
+        height: 540px;
+    }
+
+
+    .cardDetails {
+        font-size: 16px;
+        max-height: 500px;
+        width: 44%;
+        border: 2px solid #c5dbec;
+        border-radius: 20px;
+    }
+    .myCardCardDetailBox{
+        width: 1300px;
+    }
+}
+@media (max-width: 1500px){
+    .cardAction {
+        padding: 20px;
+        height: 100px;
+        width: 73%;
+        border: 2px solid #c5dbec;
+        border-radius: 20px;
+    }
+
+    .card {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 20px;
+        border: 2px solid #c5dbec;
+        width: 37%;
+        height: 540px;
+    }
+
+
+    .cardDetails {
+        max-height: 500px;
+        width: 34%;
+        border: 2px solid #c5dbec;
+        border-radius: 20px;
+    }
+    .myCardCardDetailBox{
+        width: 1200px;
+    }
+}
 
