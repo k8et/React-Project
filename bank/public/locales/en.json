@@ -135,6 +135,9 @@
     "payment": "Payment",
     "history": "History",
     "myProfile": "My Profile"
+  },
+  "header": {
+    "rate": "Exchange Rate"
   }
 }
 

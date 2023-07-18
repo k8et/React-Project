@@ -16,11 +16,12 @@ import {formBoxStyles, theme} from "./style";
 
 
 const RegisterScreen: FC = () => {
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const [name, setName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>('')
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [phone, setPhone] = useState<string>("+380");
+  const [message, setMessage] = useState<any>();
   const navigate = useNavigate()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,8 +41,8 @@ const RegisterScreen: FC = () => {
           phone,
         });
         navigate('/home')
-      } catch (error) {
-        console.log(error);
+      } catch (error: any) {
+        setMessage(error.toString().slice(24))
       }
     };
     registerHandler(email, password, name, lastName, phone).then(r => r);
@@ -71,7 +72,6 @@ const RegisterScreen: FC = () => {
                 fullWidth
                 id="displayName"
                 label="First Name"
-                autoFocus
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -82,20 +82,22 @@ const RegisterScreen: FC = () => {
                   required
                   fullWidth
                   label="Last Name"
-                  autoFocus
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                required
-                fullWidth
-                label="Number"
-                autoFocus
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                  autoComplete="fname"
+                  required
+                  fullWidth
+                  label="Number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  inputProps={{
+                    pattern: "\\+380[0-9]{9}",
+                  }}
+                  helperText="Phone number format: +380XXXXXXXXX"
               />
             </Grid>
             <Grid item xs={12}>
@@ -138,6 +140,7 @@ const RegisterScreen: FC = () => {
             </Grid>
           </Grid>
         </Box>
+        {message}
       </Container>
     </ThemeProvider>
   );

@@ -79,11 +79,10 @@ const Profile: React.FC<ComponentProps> = (props) => {
   useEffect(() => {
     handlePassportData(user, setPassportData);
     handelDownloadImg(user);
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     handleUserData(setUserData);
-    getDataStore.getData('users')
   }, []);
 
   useEffect(() => {

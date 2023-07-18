@@ -15,6 +15,8 @@ import {Link} from "react-router-dom";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import HistoryIcon from "@mui/icons-material/History";
+import PersonIcon from "@mui/icons-material/Person";
+import {styles} from "./style";
 
 interface BurgerMenuProps {
     t: (key: string) => string;
@@ -23,140 +25,108 @@ interface BurgerMenuProps {
 
 
 const BurgerMenu: FC<BurgerMenuProps> = ({t, theme}) => {
-    const [open, setOpen] = useState(false);
+        const [open, setOpen] = useState(false);
 
-    const toggleDrawer = (open: boolean) => (
-        event: React.KeyboardEvent | React.MouseEvent
-    ) => {
-        if (event.type === "keydown") {
-            return;
-        }
-        setOpen(open);
-    };
-    const handleLinkClick = () => {
-        setOpen(false);
-    };
+        const toggleDrawer = (open: boolean) => (
+            event: React.KeyboardEvent | React.MouseEvent
+        ) => {
+            if (event.type === "keydown") {
+                return;
+            }
+            setOpen(open);
+        };
+        const handleLinkClick = () => {
+            setOpen(false);
+        };
 
-    const styles = {
-        appBar: {
-            position: "absolute",
-            backgroundColor: "white",
-            width: "0px",
-            left: "1px",
-        },
-        dragHandleIcon: {
-            color: "black",
-        },
-        drawerContainer: {
-            p: 2,
-            height: 1,
-        },
-        closeButton: {
-            mb: 2,
-        },
-        listItemButtonContainer: {
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            gap: "8px",
-        },
-        link: {
+        const link = {
             color: theme === "dark" ? "white" : "black",
-            textDecoration: "none",
-        },
-        bottomBox: {
-            display: "flex",
-            justifyContent: "center",
-            position: "absolute",
-            bottom: "0",
-            left: "50%",
-            marginBottom:'5px',
-            transform: "translate(-50%, 0)",
-        },
-        list: {
-            display: "flex", alignItems: "center"
-        },
-        widget: {
-            marginRight: "8px"
-        },
-        divider: {
-            mb: 2
+            textDecoration: "none"
         }
-    };
-    return (
-        <AppBar position="absolute" sx={styles.appBar}>
-            <DragHandleIcon
-                style={styles.dragHandleIcon}
-                onClick={toggleDrawer(true)}
-            />
 
-            <Container maxWidth="lg">
-                <Drawer
-                    anchor="left"
-                    open={open}
-                    onClose={toggleDrawer(false)}
-                    // @ts-ignore
-                    onOpen={toggleDrawer(true)}
-                >
-                    <Box sx={styles.drawerContainer}>
-                        <IconButton sx={styles.closeButton}>
-                            <CloseIcon onClick={toggleDrawer(false)}/>
-                        </IconButton>
+        return (
+            <AppBar position="absolute" sx={styles.appBar}>
+                <DragHandleIcon
+                    style={styles.dragHandleIcon}
+                    onClick={toggleDrawer(true)}
+                />
 
-                        <Divider sx={styles.divider}/>
+                <Container maxWidth="lg">
+                    <Drawer
+                        anchor="left"
+                        open={open}
+                        onClose={toggleDrawer(false)}
+                    >
+                        <Box sx={styles.drawerContainer}>
+                            <IconButton sx={styles.closeButton}>
+                                <CloseIcon onClick={toggleDrawer(false)}/>
+                            </IconButton>
 
-                        <Box sx={styles.listItemButtonContainer}>
-                            <ListItemButton sx={styles.list}>
-                                <WidgetsIcon sx={styles.widget}/>
-                                <Link
-                                    to="/home"
-                                    style={styles.link}
-                                    onClick={handleLinkClick}
-                                >
-                                    {t("leftSide.myBank")}
-                                </Link>
-                            </ListItemButton>
-                            <ListItemButton sx={styles.list}>
-                                <CreditCardIcon sx={styles.widget}/>
-                                <Link
-                                    to="/cards"
-                                    style={styles.link}
-                                    onClick={handleLinkClick}
-                                >
-                                    {t("leftSide.myCard")}
-                                </Link>
-                            </ListItemButton>
-                            <ListItemButton sx={styles.list}>
-                                <PaymentsIcon sx={styles.widget}/>
-                                <Link
-                                    to="/requisites"
-                                    style={styles.link}
-                                    onClick={handleLinkClick}
-                                >
-                                    {t("leftSide.payment")}
-                                </Link>
-                            </ListItemButton>
-                            <ListItemButton sx={styles.list}>
-                                <HistoryIcon sx={styles.widget}/>
-                                <Link
-                                    to="/transaction-history"
-                                    style={styles.link}
-                                    onClick={handleLinkClick}
-                                >
-                                    {t("leftSide.history")}
-                                </Link>
-                            </ListItemButton>
+                            <Divider sx={styles.divider}/>
+
+                            <Box sx={styles.listItemButtonContainer}>
+                                <ListItemButton sx={styles.list}>
+                                    <WidgetsIcon sx={styles.widget}/>
+                                    <Link
+                                        to="/home"
+                                        style={link}
+                                        onClick={handleLinkClick}
+                                    >
+                                        {t("leftSide.myBank")}
+                                    </Link>
+                                </ListItemButton>
+                                <ListItemButton sx={styles.list}>
+                                    <CreditCardIcon sx={styles.widget}/>
+                                    <Link
+                                        to="/cards"
+                                        style={link}
+                                        onClick={handleLinkClick}
+                                    >
+                                        {t("leftSide.myCard")}
+                                    </Link>
+                                </ListItemButton>
+                                <ListItemButton sx={styles.list}>
+                                    <PaymentsIcon sx={styles.widget}/>
+                                    <Link
+                                        to="/requisites"
+                                        style={link}
+                                        onClick={handleLinkClick}
+                                    >
+                                        {t("leftSide.payment")}
+                                    </Link>
+                                </ListItemButton>
+                                <ListItemButton sx={styles.list}>
+                                    <HistoryIcon sx={styles.widget}/>
+                                    <Link
+                                        to="/transaction-history"
+                                        style={link}
+                                        onClick={handleLinkClick}
+                                    >
+                                        {t("leftSide.history")}
+                                    </Link>
+                                </ListItemButton>
+                                <ListItemButton sx={styles.list}>
+                                    <PersonIcon sx={styles.widget}/>
+                                    <Link to="/profile"
+                                          style={link}
+                                          onClick={handleLinkClick}
+                                    >
+                                        {t("leftSide.myProfile")}
+                                    </Link>
+                                </ListItemButton>
+                            </Box>
+
+                            <Box sx={styles.bottomBox}>
+                                <SwitcherLanguage/>
+                                <ThemeSwitcher/>
+                            </Box>
                         </Box>
-
-                        <Box sx={styles.bottomBox}>
-                            <SwitcherLanguage/>
-                            <ThemeSwitcher/>
-                        </Box>
-                    </Box>
-                </Drawer>
-            </Container>
-        </AppBar>
-    );
-};
+                    </Drawer>
+                </Container>
+            </AppBar>
+        )
+            ;
+    }
+;
 
 export default BurgerMenu;

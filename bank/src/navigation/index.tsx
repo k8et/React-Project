@@ -65,7 +65,7 @@ const Navigation: FC = observer(() => {
         {!isLoginPage && !isRegisterPage && !isPasswordReset && <LeftSide />}
           <div className={styles.headerItem}>
           {!isLoginPage && !isRegisterPage && !isPasswordReset && (
-            <Header currency={currency} />
+            <Header currency={currency} t={t} />
           )}
           <Routes>
             <Route

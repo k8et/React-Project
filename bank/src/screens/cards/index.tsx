@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from "react";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import {
   collection,
   doc,
@@ -106,6 +105,7 @@ const Cards: FC<CardsProps> = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,

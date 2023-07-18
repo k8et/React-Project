@@ -18,7 +18,7 @@ const MyCard: FC<MyCardProps> = (props) => {
   const { settings, userCards, splitCardNum, handleButtonClick, t } = props;
   return (
     <Box className={styles.card}>
-      <div>
+      <div className={styles.cardBackPos}>
         <Slider {...settings}>
           {userCards.length === 0 ? (
             <div className={styles.alertNoCard}>
