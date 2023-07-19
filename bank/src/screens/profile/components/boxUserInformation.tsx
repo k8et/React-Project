@@ -7,14 +7,14 @@ import {UserData} from "../../../types/UserData";
 
 interface BoxUserInformationProp {
     t: (key: string) => string;
-    img?: string;
     handleFileChange: (event: ChangeEvent<HTMLInputElement>) => void;
     userData: UserData;
     handleChangeEmailModalOpen: () => void;
     handleChangePasswordModalOpen: () => void;
+    img?:string
 }
 const BoxUserInformation:FC<BoxUserInformationProp> = (props) => {
-    const {t,img,handleFileChange,userData,handleChangeEmailModalOpen,handleChangePasswordModalOpen} = props
+    const {t,handleFileChange,userData,handleChangeEmailModalOpen,handleChangePasswordModalOpen,img} = props
     return (
         <div>
             <div className={styles.boxUserInformation}>
@@ -23,7 +23,7 @@ const BoxUserInformation:FC<BoxUserInformationProp> = (props) => {
                         <h3>{t("profile.profilePhoto")}</h3>
                         <img
                             className={styles.imgProfile}
-                            src={img || defaultImg}
+                            src={ img || defaultImg}
                             alt=""
                         />
                         <label htmlFor="file-upload" className="custom-file-upload">

@@ -1,4 +1,4 @@
-import { makeObservable, observable } from "mobx";
+import {action, makeObservable, observable} from "mobx";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
 
@@ -13,6 +13,8 @@ class GetDataStore {
   constructor() {
     makeObservable(this, {
       date: observable,
+      users: observable,
+      getData: action
     });
   }
 
