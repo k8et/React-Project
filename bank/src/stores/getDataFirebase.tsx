@@ -22,7 +22,7 @@ class GetDataStore {
   setUser = (value: any) => {
     this.users = value
   }
-  setData = (value: CardData[]) =>{
+  setData = (value: any) =>{
     this.date = value
   }
   getData(url: string, setData: any) {
