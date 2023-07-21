@@ -1,0 +1,10 @@
+.infoCard{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 4em;
+    width: 36em;
+    border-bottom: solid;
+    border-width: 3px;
+    border-color: #868686;
+}

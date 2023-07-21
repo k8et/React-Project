@@ -3,18 +3,18 @@ import styles from "../style.module.css";
 import defaultImg from "../../../assets/img/default.png";
 import Button from "@mui/material/Button";
 import LogOut from "../../../components/logOut";
-import {UserData} from "../../../types/UserData";
+import {UserDataTypes} from "../../../types/UserDataTypes";
 
 interface BoxUserInformationProp {
     t: (key: string) => string;
     handleFileChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    userData: UserData;
     handleChangeEmailModalOpen: () => void;
+    users: UserDataTypes[]
     handleChangePasswordModalOpen: () => void;
     img?:string
 }
 const BoxUserInformation:FC<BoxUserInformationProp> = (props) => {
-    const {t,handleFileChange,userData,handleChangeEmailModalOpen,handleChangePasswordModalOpen,img} = props
+    const {t,handleFileChange,users,handleChangeEmailModalOpen,handleChangePasswordModalOpen,img} = props
     return (
         <div>
             <div className={styles.boxUserInformation}>
@@ -40,17 +40,17 @@ const BoxUserInformation:FC<BoxUserInformationProp> = (props) => {
                     <div className={styles.aboutU}>
                         <div className={styles.fib}>
                             <h3>{t("profile.lastName")}:</h3>
-                            <p>{userData.name}</p>
+                            <p>{users?.[0]?.data?.lastName}</p>
                         </div>
                         <div className={styles.fib}>
                             <h3>{t("profile.firstName")}:</h3>
                             <div>
-                                <p>{userData.lastName}</p>
+                                <p>{users?.[0]?.data?.name}</p>
                             </div>
                         </div>
                         <div className={styles.fib}>
                             <h3>{t("profile.phoneNumber")}:</h3>
-                            <p>{userData.phone}</p>
+                            <p>{users?.[0]?.data?.phone}</p>
                         </div>
                     </div>
                 </div>

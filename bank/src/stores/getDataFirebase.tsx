@@ -1,15 +1,13 @@
 import {action, makeObservable, observable} from "mobx";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
+import {UserDataTypes} from "../types/UserDataTypes";
+import {CardData} from "../types/CardDataType";
 
- interface CardData {
-  id: string;
-  data: any;
-}
 
 class GetDataStore {
   date: CardData[] = [];
-  users: any = [];
+  users: UserDataTypes[] = [];
 
   constructor() {
     makeObservable(this, {
@@ -22,7 +20,7 @@ class GetDataStore {
   setUser = (value: any) => {
     this.users = value
   }
-  setData = (value: any) =>{
+  setData = (value: CardData[]) =>{
     this.date = value
   }
   getData(url: string, setData: any) {

@@ -11,25 +11,14 @@ import ModalPasswordChange from "./components/modalPasswordChange";
 import {
     handelDownloadImg,
     handlePassportData,
-    handleUserData,
     updateEmails,
     updatePasswords,
     uploadFile,
     uploadPassportData,
 } from "./components/autFunction";
-import {UserData} from "../../types/UserData";
 import getDataStore from "../../stores/getDataFirebase";
 import {observer} from "mobx-react";
-
-interface PassportData {
-    name: string;
-    issueDate: string;
-    issuedBy: string;
-    number: string;
-    series: string;
-    uid: string;
-    surname: string;
-}
+import {PassportData} from "../../types/PassportData";
 
 const Profile: React.FC<ComponentProps> = observer((props) => {
     const {t, theme} = props;
@@ -47,12 +36,8 @@ const Profile: React.FC<ComponentProps> = observer((props) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [changeEmailModalOpen, setChangeEmailModalOpen] = useState(false);
     const [changePasswordModalOpen, setChangePasswordModalOpen] = useState(false);
-    const [userData, setUserData] = useState<UserData>({
-        name: "",
-        lastName: "",
-        phone: "",
-    });
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const {users} = getDataStore
     const user = auth.currentUser?.uid;
     const img = getDataStore.users?.[0]?.data?.imageUrl;
     const handleModalOpen = () => {
@@ -84,7 +69,6 @@ const Profile: React.FC<ComponentProps> = observer((props) => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
-                handleUserData(setUserData);
                 getDataStore.getData('users', getDataStore.setUser);
             }
         });
@@ -124,7 +108,7 @@ const Profile: React.FC<ComponentProps> = observer((props) => {
                         <BoxUserInformation
                             t={t}
                             handleFileChange={handleFileChange}
-                            userData={userData}
+                            users={users}
                             img={img}
                             handleChangeEmailModalOpen={handleChangeEmailModalOpen}
                             handleChangePasswordModalOpen={handleChangePasswordModalOpen}

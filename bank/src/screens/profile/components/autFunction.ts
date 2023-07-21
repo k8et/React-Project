@@ -17,7 +17,7 @@ import {
   updateEmail,
   updatePassword,
 } from "firebase/auth";
-import { UserData } from "../../../types/UserData";
+import { UserDataTypes } from "../../../types/UserDataTypes";
 
 export const handlePassportData = (
   user: string | undefined,
@@ -45,7 +45,7 @@ export const handelDownloadImg = (user: string | undefined) => {
   }
 };
 export const handleUserData = (
-  setUserData: Dispatch<SetStateAction<UserData>>
+  setUserData: Dispatch<SetStateAction<UserDataTypes>>
 ) => {
   const unsubscribe = onAuthStateChanged(auth, (user) => {
     if (user) {
