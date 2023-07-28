@@ -1,14 +1,10 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC,useState} from "react";
 import styles from "./style.module.css";
 import {observer} from "mobx-react";
 import {ComponentProps} from "../../types/ComponentProps";
 import ContainerInput from "./components/containerInput";
-import dataStore from "../../stores/fetchData";
-import {API_URL_NEWS} from "../../utils/API_URL";
 import {Currency} from "../../types/CurrencyProp";
 import {Box} from "@mui/material";
-import {NewsItem} from "../../types/NewsItemProps";
-import SliderNews from "./components/sliderNews";
 import {getThemeClass} from "../../utils/DarkLightStyle";
 
 interface HomePageProp extends ComponentProps {
@@ -25,13 +21,8 @@ const HomePage: FC<HomePageProp> = observer((props) => {
     const [phone, setPhone] = useState<string>("");
     const [card, setCard] = useState<string>("");
     const [iBan, setIBan] = useState<string>("");
-    const [news, setNews] = useState<NewsItem[]>([]);
     const currencies = ["USD", "EUR", "UAH", "GBP"];
-    useEffect(() => {
-        dataStore.fetchData(API_URL_NEWS).then(() => {
-            setNews(dataStore.data.articles);
-        });
-    }, []);
+
     const handleConversion = () => {
         if (typeof amount === "number") {
             const rateFrom = currency[currencyFrom];
@@ -48,10 +39,7 @@ const HomePage: FC<HomePageProp> = observer((props) => {
         <Box
             className={getThemeClass(theme, styles)}
         >
-            <SliderNews
-                news={news}
-                theme={theme}
-            />
+
             <ContainerInput
                 card={card}
                 setCard={setCard}

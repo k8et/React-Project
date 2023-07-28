@@ -64,19 +64,32 @@ class HandleTransferStore {
     let updatedDestinationBalance = destinationCardData.balance;
 
     if (
-      sourceCard.data.currency === "USD" &&
-      destinationCardData.currency === "UAH"
+        sourceCard.data.currency === "USD" &&
+        destinationCardData.currency === "UAH"
     ) {
       amountToTransfer *= currency.UAH;
       updatedDestinationBalance += amountToTransfer;
       sourceCard.data.balance -= amountToTransfer / currency.UAH;
     } else if (
-      sourceCard.data.currency === "UAH" &&
-      destinationCardData.currency === "USD"
+        sourceCard.data.currency === "UAH" &&
+        destinationCardData.currency === "USD"
     ) {
       amountToTransfer /= currency.UAH;
       updatedDestinationBalance += amountToTransfer;
       sourceCard.data.balance -= amountToTransfer * currency.UAH;
+    }
+    else if (
+        sourceCard.data.currency === "USD" &&
+        destinationCardData.currency === "USD"
+    ) {
+      updatedDestinationBalance += amountToTransfer;
+      sourceCard.data.balance -= amountToTransfer;
+    } else if (
+        sourceCard.data.currency === "UAH" &&
+        destinationCardData.currency === "UAH"
+    ) {
+      updatedDestinationBalance += amountToTransfer;
+      sourceCard.data.balance -= amountToTransfer;
     }
 
     await updateDoc(doc(db, "cards", sourceCard.id), {

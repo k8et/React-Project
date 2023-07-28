@@ -37,13 +37,7 @@ class TopUpStore {
             const amountToTransfer = parseFloat(amount)
             const currentBalance = cardSnapshot.data().balance;
             const newBalance =
-                currentBalance +
-                (selectedCard &&
-                selectedCard.data.currency === "USD" &&
-                currency &&
-                "UAH" in currency
-                    ? amountToTransfer / (currency.UAH as number)
-                    : amountToTransfer);
+                currentBalance + amountToTransfer
 
             await updateDoc(doc(db, "cards", selectedCardId), {
                 balance: newBalance,

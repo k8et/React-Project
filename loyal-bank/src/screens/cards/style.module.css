@@ -342,6 +342,13 @@
 
 @media (max-width: 1300px) {
 
+    .alertNoCard p{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 87%;
+        height: 200px;
+    }
     .cardAction {
         font-size: 12px;
         padding: 20px;

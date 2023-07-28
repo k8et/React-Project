@@ -35,7 +35,6 @@ const Navigation: FC = observer(() => {
     const isChatBotPage = !(isLoginPage || isRegisterPage || isPasswordReset);
     const [userId, setUserId] = useState<string | undefined>("");
     const [currency, setCurrency] = useState<Currency>({});
-    console.log('userCards', date)
     const {t} = useTranslation();
     const themeContext = useContext(ThemeContext);
     useEffect(() => {

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import styles from "./style.module.css";
@@ -104,18 +104,14 @@ const Profile: React.FC<ComponentProps> = observer((props) => {
                     <Tab label={t("profile.documentsTab")}/>
                 </Tabs>
                 {tab === 0 ? (
-                    img ? (
-                        <BoxUserInformation
-                            t={t}
-                            handleFileChange={handleFileChange}
-                            users={users}
-                            img={img}
-                            handleChangeEmailModalOpen={handleChangeEmailModalOpen}
-                            handleChangePasswordModalOpen={handleChangePasswordModalOpen}
-                        />
-                    ) : (
-                        <div>Loading user image...</div>
-                    )
+                    <BoxUserInformation
+                        t={t}
+                        handleFileChange={handleFileChange}
+                        users={users}
+                        img={img}
+                        handleChangeEmailModalOpen={handleChangeEmailModalOpen}
+                        handleChangePasswordModalOpen={handleChangePasswordModalOpen}
+                    />
                 ) : tab === 1 && (
                     <UploadDocuments
                         t={t}

@@ -4,7 +4,7 @@ import counterReducer, {
     incrementByAmount,
 } from './counterSlice';
 
-describe('counter reducer', () => {
+describe('counter cashReducer', () => {
     const initialState = {
         value: 3,
         status: 'idle',
