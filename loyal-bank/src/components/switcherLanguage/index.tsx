@@ -12,7 +12,7 @@ const SwitcherLanguage = () => {
         <Select
             variant={"standard"}
             size={"small"}
-            value={i18n.language}
+            value={i18n.language || 'ru'}
             onChange={handleLanguageChange}
             sx={{color: "Black"}}
         >

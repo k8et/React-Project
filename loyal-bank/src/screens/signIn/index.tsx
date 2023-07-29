@@ -11,9 +11,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
 import Container from "@mui/material/Container";
-import { login } from "../../config/firebase";
 import {Link, useNavigate} from "react-router-dom";
 import {sxButton, sxBox, theme} from "./style";
+import {login} from "../../config/firebase";
 
 
 

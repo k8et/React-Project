@@ -23,7 +23,6 @@ import styles from "./style.module.css";
 import {auth} from "../config/firebase";
 import getDataStore from "../stores/getDataFirebase";
 import {observer} from "mobx-react";
-import {CardData} from "../types/CardDataType";
 
 const Navigation: FC = observer(() => {
     const location = useLocation();

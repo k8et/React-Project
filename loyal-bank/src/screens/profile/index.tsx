@@ -142,6 +142,7 @@ const Profile: React.FC<ComponentProps> = observer((props) => {
                         setPassportIssueDate={setPassportIssueDate}
                         passportIssuedBy={passportIssuedBy}
                         setPassportIssuedBy={setPassportIssuedBy}
+                        theme={theme}
                     />
                 )}
                 <ModalEmailChange
